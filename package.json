@@ -9,5 +9,8 @@
     "socket.io": "^2.3.0",
     "solenolyrics": "^5.0.0",
     "youtube-mp3-downloader": "^0.6.3"
-  }
+  },
+	"scripts":{
+					"start":"node ."
+}
 }
