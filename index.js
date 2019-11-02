@@ -21,7 +21,8 @@ app.get("/urlYoutube",async (req,res)=>{
 io.on("connection",client=>{
 				client.on("download",async musicData=>await downloader.download(musicData,client))
 })
-http.listen(3000,()=>{
+http.listen(process.env.PORT || 3000, (ip,port)=>{
+				console.log(ip)
 				console.log("Ativado")
 })
 
