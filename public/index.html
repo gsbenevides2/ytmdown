@@ -1,0 +1,49 @@
+<html>
+				<head>
+								<script src="https://eruda.liriliri.io/eruda.min.js"></script>
+								<meta name="theme-color" content="#1E90FF"/>
+								<meta name="viewport" content="width=device-width user-scalable=no"/>
+								<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+								<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+								<link rel="stylesheet" href="./styles.css"/>
+								<script src="scripts.js"></script>
+								<title>Youtube Music Downloader</title>
+				</head>
+				<body>
+								<div class="topAppBar">YouTube Music Downloader</div>
+								<div class="page"  id="page-form">
+												<form action="javascript:urlInput()" autocomplete="off">
+																<div class="input">
+																				<input id="url"/>
+																				<label for="url">Insira a url do video</label>
+																</div>
+																<div class="right">
+																				<button type="submit">Continuar</button>
+																</div>
+												</form>
+								</div>
+								<div class="page" id="page-album">
+												<h4>Selecione a foto do album</h4>
+												<button onclick="fabAlbum()" class="fab"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg></button>
+												<ul class="albumSelector"></ul>
+								</div>
+								<div class="page" id="page-letra">
+												<h4>Verifique se essa é a letra.</h4>
+												<p id="letra"></p>
+												<div class="right">
+																<button onclick="letraSubmmit(false)" >Errado</button>
+																<button onclick="letraSubmit(true)">Certo</button>
+												</div>
+								</div>
+								<div id="page-progress">
+												<div class="center">
+																<div class="preloader">
+																				<div class="center"></div>
+																				<div class="point"></div>
+																				<div class="curve"></div>
+																</div>
+																<h4>Carregando</h4>
+												</div>
+								</div>
+				</body>
+</html>
