@@ -35,8 +35,14 @@ function albumSubmit(){
 }
 async function urlInput(){
  musicData= null
- pages.form.hide()
- progressScreen("Aguarde")
+ const aguardeAnimacao = ()=>{return new Promise(resolve=>{
+	setTimeout(()=>{
+	 pages.form.hide()
+	 progressScreen("Aguarde")
+	 resolve()
+	},1000)
+ })}
+ await aguardeAnimacao()
  const input = $("#url")
  if(!input.val()){
 	pages.progress.hide()
@@ -116,4 +122,15 @@ function letraSubmit(isValid){
 	socket.close()
  })
 }
-
+function toHome(){
+ window.location.reload()
+}
+function darkMode(){
+ $(document.body).toggleClass("dark")
+}
+function areaDeTransferencia(){
+ navigator.clipboard.readText().then(text=>{
+	$("#url").val(text)
+	$("#url").parent().addClass("input-focus")
+ })
+}
