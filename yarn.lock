@@ -354,7 +354,7 @@ http-errors@~1.7.2:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.0"
 
-iconv-lite@0.4.24:
+iconv-lite@0.4.24, iconv-lite@^0.4.15:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
   integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
@@ -475,6 +475,13 @@ node-fetch@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
+node-id3@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/node-id3/-/node-id3-0.1.11.tgz#ca9b97f0c54e40fb2346e529b4ac4c15a0cf162a"
+  integrity sha512-lNBa5k0oxLyWaRBsMABJcctDHoK7T2qGg44c3KbAZiH/7IHx7a2Uo4f2RFBqeC0XvD1dIQrJjjtb49iE0MQ8dA==
+  dependencies:
+    iconv-lite "^0.4.15"
 
 object-component@0.0.3:
   version "0.0.3"
