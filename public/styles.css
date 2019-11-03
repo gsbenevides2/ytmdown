@@ -18,7 +18,7 @@ body{
 .dark .topAppBar{
  background-color:#212121;
 }
-.dark h4{
+.dark h4,.dark p{
  color:white;
 }
 .dark input{

@@ -5,11 +5,32 @@
 	<meta name="viewport" content="width=device-width user-scalable=no"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 	<link rel="stylesheet" href="./styles.css"/>
+	<link rel="manifest" href="/manifest.json"/>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-performance.js"></script>
+	<script>
+	 var firebaseConfig = {
+		apiKey: "AIzaSyC4ngJLgSnWp347vkfw_AQMdsAdnX7YgMs",
+		authDomain: "gui-benevides.firebaseapp.com",
+		databaseURL: "https://gui-benevides.firebaseio.com",
+		projectId: "gui-benevides",
+		storageBucket: "gui-benevides.appspot.com",
+		messagingSenderId: "275309435614",
+		appId: "1:275309435614:web:6bb9fac8aa4b2c2d6a804f",
+		measurementId: "G-9G1FQY62RM"
+	 };
+	 firebase.initializeApp(firebaseConfig);
+	 firebase.analytics();
+	 firebase.performance();
+	</script>
 	<script src="scripts.js"></script>
 	<title>Youtube Music Downloader</title>
  </head>
- <body class="dark">
+ <body>
 	<div class="topAppBar">
 	 <span onclick="toHome()">YouTube Music Downloader</span>
 	 <svg onclick="darkMode()" height="25px" viewBox="-44 -33 1065 1065.0001" width="25px" xmlns="http://www.w3.org/2000/svg"><path d="m973.386719 554.421875s-267.675781 264.9375-518.992188 87.199219c-354.453125-250.671875-10.328125-643.640625-10.328125-643.640625s-177.933594 11.847656-324.097656 168.292969c-81.546875 87.285156-122.730469 210.277343-122.730469 329.890624 0 133.617188 52.03125 259.242188 146.515625 353.734376 94.492188 94.484374 220.117188 146.519531 353.742188 146.519531 119.632812 0 236.914062-41.1875 326-120.8125 173.527344-155.109375 149.890625-321.183594 149.890625-321.183594zm0 0"/></svg>

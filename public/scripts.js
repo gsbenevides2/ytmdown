@@ -5,6 +5,10 @@ $(document).ready(()=>{
  pages.form = $("#page-form")
  pages.progress = $("#page-progress")
  pages.letra = $("#page-letra")
+ if("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js")
+ if($.cookie("darkMode") === "true"){
+	$(document.body).addClass("dark")
+ }
  const inputsDiv = $(".input")
  for(let inputDiv of inputsDiv){
 	const input = $(inputDiv).find("input")
@@ -34,6 +38,12 @@ function albumSubmit(){
  console.log(album)
 }
 async function urlInput(){
+ if(!navigator.onLine){
+	alert("Opaaa. parece que você esta offline!")
+	return false
+ }
+ const trace = firebase.performance().trace("urlBackEnd")
+ trace.start()
  musicData= null
  const aguardeAnimacao = ()=>{return new Promise(resolve=>{
 	setTimeout(()=>{
@@ -50,6 +60,7 @@ async function urlInput(){
 	input.parent().addClass("invalid")
 	pages.form.find("button").blur()
 	alert("Insira uma url!")
+	trace.stop()
 	return false;
  }
  else{
@@ -62,6 +73,7 @@ async function urlInput(){
 	pages.progress.hide()
 	pages.form.show()
 	pages.form.find("button").blur()
+	trace.stop()
 	return false;
  }
  else{
@@ -72,6 +84,8 @@ async function urlInput(){
 	$(".albumSelector").html(html)
 	pages.progress.hide()
 	pages.album.show()
+	trace.stop()
+	return false()
  }
 }
 function fabAlbum(){
@@ -93,6 +107,13 @@ function progressScreen(information){
  pages.progress.find("h4").html(information)
 }
 function letraSubmit(isValid){
+ if(isValid){
+	firebase.analytics().logEvent('letraValida');
+ }
+ else{
+	firebase.analytics().logEvent('letraInvalida');
+ }
+ const trace = firebase.performance().trace("backProcess")
  musicData.letraIsValid = isValid
  var socket = io(window.location.href)
  socket.emit("download",musicData)
@@ -103,6 +124,7 @@ function letraSubmit(isValid){
 	pages.progress.hide()
 	pages.form.show()
 	alert(msg)
+	trace.stop()
 	socket.close()
  })
  socket.on("downloadSucess",()=>{
@@ -119,6 +141,7 @@ function letraSubmit(isValid){
 	 pages.progress.hide()
 	 pages.form.show()
 	})
+	trace.stop()
 	socket.close()
  })
 }
@@ -127,6 +150,15 @@ function toHome(){
 }
 function darkMode(){
  $(document.body).toggleClass("dark")
+ if($(document.body).hasClass("dark")){
+	firebase.analytics().setUserProperties({darkMode: true});
+	$.cookie("darkMode",true)
+ }
+ else{
+	firebase.analytics().setUserProperties({darkMode:false});
+	$.cookie("darkMode",false)
+ }
+ 
 }
 function areaDeTransferencia(){
  navigator.clipboard.readText().then(text=>{
