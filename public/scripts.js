@@ -1,4 +1,4 @@
-eruda.init()
+
 const pages = {}
 $(document).ready(()=>{
  pages.album = $("#page-album")
