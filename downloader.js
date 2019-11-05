@@ -110,7 +110,7 @@ module.exports = {
 		client.emit("downloadProgress","Insirindo dados na musica")
 		const tags = {
 		 title: musicData.name,
-		 artist: musicData.artists.join(","),
+		 artist: musicData.artists.join(", "),
 		 album: musicData.album,
 		 APIC:`${__dirname}/images/${musicData.id}.jpg`
 		}
