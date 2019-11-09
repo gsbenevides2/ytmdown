@@ -162,10 +162,9 @@ module.exports = {
 		const tags = {
 		 title: musicData.name,
 		 artist: musicData.artists.join(", "),
-		 album: musicData.album,
-		 APIC:`${__dirname}/images/${musicData.id}.jpg`
+		 album: musicData.album
 		}
-		if(musicData.albumSelected)tags.APIC=`${__dirname}/images/${musicData.id}.jpg`
+		if(musicData.albumSelected!==false)tags.APIC=`${__dirname}/images/${musicData.id}.jpg`
 		if(musicData.letraIsValid){
 		 tags.unsynchronisedLyrics = {
 			language:"eng",
