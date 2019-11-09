@@ -1,11 +1,13 @@
 <html>
  <head>
+	<!--script src="//cdn.jsdelivr.net/npm/eruda"></script>
+	<script>eruda.init();</script-->
 	<meta name="theme-color" content="#1E90FF"/>
 	<meta name="viewport" content="width=device-width user-scalable=no"/>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 	<link rel="stylesheet" href="./styles.css"/>
+	
 	<link rel="manifest" href="/manifest.json"/>
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
@@ -48,7 +50,7 @@
 	</div>
 	<div class="page" id="page-album">
 	 <h4>Selecione a foto do album</h4>
-	 <button onclick="fabAlbum()" class="fab"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg></button>
+	 <button onclick="fabAlbum(false)" class="fab"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg></button>
 	 <ul class="albumSelector"></ul>
 	</div>
 	<div class="page" id="page-letra">
@@ -57,6 +59,14 @@
 	 <div class="right">
 		<button onclick="letraSubmit(false)" >Errado</button>
 		<button onclick="letraSubmit(true)">Certo</button>
+	 </div>
+	</div>
+	<div id="page-traducao" class="page">
+	 <h4>Deseja a tradução?</h4>
+	 <p id="traducao"></p>
+	 <div class="right">
+		<button onclick="traducaoSubmit(false)">Não</button>
+		<button onclick="traducaoSubmit(true)">Sim</button>
 	 </div>
 	</div>
 	<div id="page-progress">

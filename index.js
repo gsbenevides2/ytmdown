@@ -6,22 +6,24 @@ const rmrf = require("rimraf")
 const fs = require("fs")
 const downloader =  require("./downloader.js")
 app.use(express.static("public"))
+app.disable('etag')
 app.get("/urlYoutube",async (req,res)=>{
-				const url = req.query.url
-				if(!url) return res.send({
-								urlIsValid:false,
-								errorMessage:"Insira uma url!"
-				})
-				const id = downloader.returnIdFromUrl(url)
-				if(!id) return res.send({
-								urlIsValid:false,
-								errorMessage:"Insira uma url do Youtube!"
-				})
-				const response = await downloader.getVideoData(id)
-				res.send(response)
+ const url = req.query.url
+ if(!url) return res.send({
+	urlIsValid:false,
+	errorMessage:"Insira uma url!"
+ })
+ const id = downloader.returnIdFromUrl(url)
+ if(!id) return res.send({
+	urlIsValid:false,
+	errorMessage:"Insira uma url do Youtube!"
+ })
+ const response = await downloader.getVideoData(id)
+ res.send(response)
+ res.end(req.url)
 })
 io.on("connection",client=>{
-				client.on("download",async musicData=>await downloader.download(musicData,client))
+ client.on("download",async musicData=>await downloader.download(musicData,client))
 })
 app.get("/music/:id.mp3",(req,res)=>{
  res.sendFile(`${__dirname}/music/${req.params.id}.mp3`)
@@ -34,7 +36,6 @@ app.get("/clean",(req,res)=>{
  fs.mkdirSync("music")
 })
 http.listen(process.env.PORT || 3000, (ip,port)=>{
-				console.log(ip)
-				console.log("Ativado")
+ console.log("Ativado http")
 })
 
