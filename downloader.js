@@ -46,6 +46,9 @@ async function requestAsyncGet(options,api){
 	else request.get(options,resolve)
  })
 }
+async function nullPromise(){
+ return new Promise(resolve=>{resolve(null)})
+}
 module.exports = {
  returnIdFromUrl(urlString){
 	try{
@@ -96,27 +99,38 @@ module.exports = {
 		 })
 		 return solenolyrics.requestLyricsFor(`${response.musicData.name},${response.musicData.artists.join(" ")}`)
 		})
-		.then(lyrics=>{		
-		 response.musicData.lyrics = lyrics
-		 return requestAsyncGet({
-			url:"/tr.json/detect",
-			qs:{
-			 text:lyrics
+		.then(lyrics=>{
+		 if(lyrics){
+			response.musicData.lyrics = lyrics
+			return requestAsyncGet({
+			 url:"/tr.json/detect",
+			 qs:{
+				text:lyrics
+			 }
+			},yandexAPI)
+		 }else{
+			 return nullPromise()
 			}
-		 },yandexAPI)
+		 })
+		.then(data=>{
+		 if(data){
+			const lang = data.body.lang
+			return requestAsyncGet({
+			 url:"/tr.json/translate",
+			 qs:{
+				text:response.musicData.lyrics,
+				lang:`${lang}-pt`
+			 }
+			},yandexAPI)
+		 }
+		 else{
+			return nullPromise()
+		 }
 		})
 		.then(data=>{
-		 const lang = data.body.lang
-		 return requestAsyncGet({
-			url:"/tr.json/translate",
-			qs:{
-			 text:response.musicData.lyrics,
-			 lang:`${lang}-pt`
-			}
-		 },yandexAPI)
-		})
-		.then(data=>{
-		 response.musicData.traslation = data.body.text.join("")
+		 if(data){
+			response.musicData.traslation = data.body.text.join("")
+		 }
 		 return requestAsyncGet({
 			url:"/search",
 			qs:{

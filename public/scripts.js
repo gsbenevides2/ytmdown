@@ -6,7 +6,7 @@ $(document).ready(()=>{
  pages.progress = $("#page-progress")
  pages.letra = $("#page-letra")
  pages.traducao = $("#page-traducao")
- //if("serviceWorker" in navigator && !development){
+ // if("serviceWorker" in navigator && !development){
 	navigator.serviceWorker.register("/sw.js")
 	/* }
  else{
@@ -24,6 +24,11 @@ $(document).ready(()=>{
  }*/
  if(localStorage.getItem("darkMode") === "true"){
 	$(document.body).addClass("dark")
+ }
+ const url = new URL(window.location.href)
+ if(url.searchParams.has("text")){
+	$("#url").parent().addClass("input-focus")
+	$("#url").val(url.searchParams.get("text"))
  }
  const inputsDiv = $(".input")
  for(let inputDiv of inputsDiv){
@@ -144,9 +149,16 @@ function letraSubmit(isValid){
 	firebase.analytics().logEvent('letraInvalida');
  }
  musicData.letraIsValid = isValid
+ if(musicData.traslation){
  pages.traducao.fadeIn()
  pages.letra.fadeOut()
  pages.traducao.find("p").html(musicData.traslation.split("\n").join("<br/>"))
+ }
+ else{
+	alert("Não foi possivel encontrar a tradução")
+	pages.letra.fadeOut()
+	traducaoSubmit(false)
+ }
 }
 function traducaoSubmit(isValid){
  if(isValid){
