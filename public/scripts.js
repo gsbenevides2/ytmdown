@@ -1,27 +1,11 @@
 const pages = {}
-//development = window.location.hostname === "localhost"
 $(document).ready(()=>{
  pages.album = $("#page-album")
  pages.form = $("#page-form")
  pages.progress = $("#page-progress")
  pages.letra = $("#page-letra")
  pages.traducao = $("#page-traducao")
- // if("serviceWorker" in navigator && !development){
-	navigator.serviceWorker.register("/sw.js")
-	/* }
- else{
-	console.info("Develop")
-	navigator.serviceWorker.getRegistrations().then(registrations => {
-	 registrations.map(registration => {
-		registration.unregister()
-	 })
-	})
-	caches.keys().then(keys=>{
-	 keys.map(key=>{
-		caches.delete(key)
-	 })
-	})
- }*/
+ navigator.serviceWorker.register("/sw.js")
  if(localStorage.getItem("darkMode") === "true"){
 	$(document.body).addClass("dark")
  }
@@ -150,9 +134,9 @@ function letraSubmit(isValid){
  }
  musicData.letraIsValid = isValid
  if(musicData.traslation){
- pages.traducao.fadeIn()
- pages.letra.fadeOut()
- pages.traducao.find("p").html(musicData.traslation.split("\n").join("<br/>"))
+	pages.traducao.fadeIn()
+	pages.letra.fadeOut()
+	pages.traducao.find("p").html(musicData.traslation.split("\n").join("<br/>"))
  }
  else{
 	alert("Não foi possivel encontrar a tradução")
@@ -184,7 +168,7 @@ function traducaoSubmit(isValid){
 	const a = document.createElement("a")
 	a.style.display="none"
 	document.body.appendChild(a)
-	a.href=`${window.location.host}/music/${musicData.id}.mp3`
+	a.href=`/music/${musicData.id}.mp3`
 	a.setAttribute("download",`${musicData.id}.mp3`)
 	a.click()
 	window.URL.revokeObjectURL(a.href);
