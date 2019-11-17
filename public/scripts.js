@@ -184,7 +184,7 @@ function traducaoSubmit(isValid){
 	const a = document.createElement("a")
 	a.style.display="none"
 	document.body.appendChild(a)
-	a.href=`${window.location.href}music/${musicData.id}.mp3`
+	a.href=`${window.location.host}/music/${musicData.id}.mp3`
 	a.setAttribute("download",`${musicData.id}.mp3`)
 	a.click()
 	window.URL.revokeObjectURL(a.href);
