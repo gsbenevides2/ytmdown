@@ -165,14 +165,7 @@ function traducaoSubmit(isValid){
 	socket.close()
  })
  socket.on("downloadSucess",()=>{
-	const a = document.createElement("a")
-	a.style.display="none"
-	document.body.appendChild(a)
-	a.href=`/music/${musicData.id}.mp3`
-	a.setAttribute("download",`${musicData.id}.mp3`)
-	a.click()
-	window.URL.revokeObjectURL(a.href);
-	document.body.removeChild(a);
+	window.open(`/music/${musicData.id}.mp3`)
 	progressScreen("Concluido")
 	setTimeout(()=>{
 	 pages.progress.hide()
