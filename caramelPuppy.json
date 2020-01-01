@@ -1,0 +1,1 @@
+{"logs":[{"date":"2020-1-1 14:15:48","type":"appStart","fileName":"index.js"},{"date":"2020-1-1 14:15:49","type":"log","logArguments":["Ativado http"],"fileName":"getVideoInfo.js"},{"date":"2020-1-1 14:15:49","type":"log","logArguments":["Porta usada",3000],"fileName":"getVideoInfo.js"}]}

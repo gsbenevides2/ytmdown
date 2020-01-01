@@ -1,0 +1,29 @@
+body{
+ padding:0;
+ margin:0;
+ transition:0.5s;
+}
+.mdc-text-field{
+ width:100%;
+}
+.mdc-top-app-bar{
+ top:0px;
+}
+.mdc-fab{
+ position: fixed;
+ bottom: 1rem;
+ right: 1rem;
+ transition:0.2s;
+}
+.mdc-fab-hide{
+ transform:scale(0);
+}
+@media(min-width: 1024px) {
+ .mdc-fab{
+	bottom: 1.5rem;
+	right: 1.5rem;
+ }
+}
+.screen{
+ margin:10px;
+}

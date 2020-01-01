@@ -1,0 +1,34 @@
+body.dark{
+ --mdc-theme-error:#cf6679;
+ background-color:#121212;
+ color:#fff !important;
+}
+/*TopAppBar*/
+.dark .mdc-top-app-bar{
+ background-color:rgba(255,255,255,.16);
+}
+/*Input*/
+.dark .mdc-text-field{
+ background-color:#0a0a0a !important;
+ border-bottom-color:rgba(255,255,255,0.12) !important;
+}
+.dark .mdc-text-field__input{
+ color:rgba(255,255,255,0.87) !important;
+}
+.dark .mdc-text-field:not(.mdc-text-field--invalid) .mdc-text-field__input{
+ border-bottom-color:rgba(255,255,255,0.42) !important;
+}
+.dark .mdc-text-field:not(.mdc-text-field--invalid):not(.mdc-ripple-upgraded--background-focused) .mdc-floating-label{
+ color:rgba(255,255,255,0.6) !important;
+}
+.mdc-text-field:not(.mdc-text-field--invalid).mdc-ripple-upgraded--background-focused .mdc-floating-label{
+ color: #018786 !important;
+}
+.dark .mdc-text-field:not(.mdc-text-field--invalid) .mdc-line-ripple{
+ background-color: #018786 !important;
+}
+/*Card*/
+.dark .mdc-card{
+ background-color:rgba(255,255,255,0.09);
+ color:#fff;
+}

@@ -1,41 +1,69 @@
 const express  = require("express")
 const app = express()
+const caramelPuppy = require("caramel-puppy")({
+ __filename,
+ express:app
+})
+caramelPuppy.appStart()
 const http = require("http").Server(app)
 const io = require("socket.io")(http)
-const rmrf = require("rimraf")
-const fs = require("fs")
-const downloader =  require("./downloader.js")
+
+const {
+ getVideoId,
+ generateSearchTerm
+} = require("./getVideoInfo")
+const {
+ searchMusic,
+ getMusic
+} = require("./getMusicInfo")
+
 app.use(express.static("public"))
 app.disable('etag')
-app.get("/urlYoutube",async (req,res)=>{
+
+app.get("/album",async (req,res)=>{
  const url = req.query.url
- if(!url) return res.send({
-	urlIsValid:false,
-	errorMessage:"Insira uma url!"
- })
- const id = downloader.returnIdFromUrl(url)
- if(!id) return res.send({
-	urlIsValid:false,
-	errorMessage:"Insira uma url do Youtube!"
- })
- const response = await downloader.getVideoData(id)
- res.send(response)
- res.end(req.url)
+ caramelPuppy.log("Url:",url)
+ const id = await getVideoId(url)
+	.catch(e=>{res.status(400).send(e)})
+ caramelPuppy.log("Id:",id)
+ if(id){
+	const searchTerm = await generateSearchTerm(id)
+	 .catch(e=>{res.status(400).send(e)})
+	caramelPuppy.log("SearchTerm:",searchTerm)
+	if(searchTerm){
+	 const results = await searchMusic(searchTerm)
+		.catch(e=>{res.status(400).send(e)})
+	 caramelPuppy.log("Results:",results)
+	 res.send({
+		idOfVideo:id,
+		searchTerm,
+		albumResults:results
+	 })
+	}
+ }
 })
-io.on("connection",client=>{
- client.on("download",async musicData=>await downloader.download(musicData,client))
+app.get("/music/",(req,res)=>{
+ const {id} = req.query
+ caramelPuppy.log("Id",id)
+ getMusic(id)
+	.then(result=>{
+	 caramelPuppy.log("Result",result)
+	 res.send(result)
+	})
+	.catch(e=>{res.status(400).send(e)})
 })
 app.get("/music/:id.mp3",(req,res)=>{
  res.sendFile(`${__dirname}/music/${req.params.id}.mp3`)
 })
 app.get("/clean",(req,res)=>{
- res.send()
- rmrf.sync(`${__dirname}/music`)
- rmrf.sync(`${__dirname}/images`)
- fs.mkdirSync("images")
- fs.mkdirSync("music")
 })
-http.listen(process.env.PORT || 3000, (ip,port)=>{
- console.log("Ativado http")
+
+io.on("connection",client=>{
+ client.on("download",async musicData=>await downloader.download(musicData,client))
+})
+
+http.listen(process.env.PORT || 3000, ()=>{
+ caramelPuppy.log("Ativado http")
+ caramelPuppy.log("Porta usada",process.env.PORT || 3000)
 })
 
