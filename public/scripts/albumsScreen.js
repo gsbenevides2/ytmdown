@@ -26,6 +26,25 @@ const albumsScreen = new Vue({
 		 progressBar.visible = false
 		 alert(`Ocorreu um erro:${error.message}`)
 		})
+	},
+	search(){
+	 progressBar.visible = true
+	 fetch(`/album?url=${urlScreen.url}&searchTerm=${this.musicName}`)
+		.then(async res=>{
+		 if(res.status === 200){
+			fab.video= await res.json()
+			this.albums = fab.video.albumResults
+		 }
+		 else{
+			const text = await res.text()
+			throw new Error(text)
+		 }
+		 progressBar.visible = false
+		})
+		.catch(error=>{
+		 progressBar.visible = false
+		 alert(error.message)
+		})
 	}
  },
  mounted(){
@@ -36,7 +55,7 @@ const albumsScreen = new Vue({
 	 <div v-show="albums.length === 0">
 		<h4 class="mdc-typography--headline6">Por favor digite o nome da música:</h4>
 		<div ref="musicName" class="mdc-text-field">
-		 <input @ v-model="musicName" id="musicName" class="mdc-text-field__input"/>
+		 <input @keyup.enter="search"  v-model="musicName" id="musicName" class="mdc-text-field__input"/>
 		 <label for="musicName" class="mdc-floating-label">Nome da música</label>
 		 <div class="mdc-line-ripple"></div>
 		</div>

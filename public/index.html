@@ -1,6 +1,6 @@
 <html>
  <head>
-	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+	<!--script src="//cdn.jsdelivr.net/npm/eruda"></script>
 	<script>
 	 eruda.init();
 	 window.onerror= (message,file,line,character,object)=>{
@@ -12,7 +12,7 @@
 		console.groupEnd()
 		eruda.show()
 	 }
-	</script>
+	</script-->
 	<meta name="theme-color" content="#018786"/>
 	<meta name="viewport" content="width=device-width user-scalable=no"/>
 	<link rel="manifest" href="/manifest.json"/>
@@ -27,20 +27,25 @@
 	<div id="topAppBar"></div>
 	<div id="progressBar"></div>
 	<div id="urlScreen"></div>
+	<div id="lyricsScreen"></div>
 	<div id="albumScreen"></div>
+	<div id="loadingScreen"></div>
 	<div id="albumsScreen"></div>
 	<div id="selectDataScreen"></div>
 	<div id="fab"></div>
  </body>
+ <script src="/socket.io/socket.io.js"></script>
+ <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
  <script src="libraes/vue.js"></script>
  <script src="scripts/topAppBar.js"></script>
  <script src="scripts/fab.js"></script>
+ <script src="scripts/loadingScreen.js"></script>
  <script src="scripts/urlScreen.js"></script>
  <script src="scripts/albumScreen.js"></script>
  <script src="scripts/albumsScreen.js"></script>
  <script src="scripts/progressBar.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+ <script src="scripts/lyricsScreen.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-performance.js"></script>

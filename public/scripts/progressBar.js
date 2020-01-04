@@ -8,6 +8,7 @@ const progressBar = new Vue({
 	this.mdc = new mdc.linearProgress.MDCLinearProgress(this.$el)
  },
  template:`
+ <div class="progressBar">
  <div v-bind:style="{opacity:visible?1:0}"
  class="mdc-linear-progress mdc-linear-progress--indeterminate mdc-top-app-bar--fixed-adjust">
 	<div class="mdc-linear-progress__buffering-dots"></div>
@@ -18,6 +19,6 @@ const progressBar = new Vue({
 	<div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
 	 <span class="mdc-linear-progress__bar-inner"></span>
 	</div>
- </div>
+ </div></div>
  `
 })

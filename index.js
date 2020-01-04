@@ -14,9 +14,20 @@ const {
 } = require("./getVideoInfo")
 const {
  searchMusic,
- getMusic
+ getMusic,
 } = require("./getMusicInfo")
+const getLyrics = require("./getLyrics")
 
+const {
+ downloadMusic,
+ downloadCapa,
+ setId3
+} = require("./musicControler")
+const {
+ configFolders,
+ clearFolders
+} = require("./fileManager")
+configFolders()
 app.use(express.static("public"))
 app.disable('etag')
 
@@ -25,9 +36,9 @@ app.get("/album",async (req,res)=>{
  caramelPuppy.log("Url:",url)
  const id = await getVideoId(url)
 	.catch(e=>{res.status(400).send(e)})
- caramelPuppy.log("Id:",id)
+	caramelPuppy.log("Id:",id)
  if(id){
-	const searchTerm = await generateSearchTerm(id)
+	const searchTerm = req.query.searchTerm || await generateSearchTerm(id)
 	 .catch(e=>{res.status(400).send(e)})
 	caramelPuppy.log("SearchTerm:",searchTerm)
 	if(searchTerm){
@@ -52,14 +63,43 @@ app.get("/music/",(req,res)=>{
 	})
 	.catch(e=>{res.status(400).send(e)})
 })
+app.get("/lyrics/",(req,res)=>{
+ const {name,artist}= req.query
+ caramelPuppy.log("Name",name,"Artist",artist)
+ getLyrics(`${name} ${artist}`)
+	.then(result=>{
+	 caramelPuppy.log("Result",result)
+	 res.send(result)
+	})
+	.catch(e=>{res.status(400).send(e)})
+})
 app.get("/music/:id.mp3",(req,res)=>{
  res.sendFile(`${__dirname}/music/${req.params.id}.mp3`)
 })
 app.get("/clean",(req,res)=>{
+ clearFolders()
+ res.send("OK")
 })
-
-io.on("connection",client=>{
- client.on("download",async musicData=>await downloader.download(musicData,client))
+io.on("connection",socket=>{
+ socket.on("downloadMusic",async musicData=>{
+	function eventReceiver(event){
+	 console.log(event)
+	 socket.emit("event",event)
+	}
+	downloadMusic(musicData.url,eventReceiver)
+	 .then(id=>{
+		downloadCapa(musicData.cover,id,eventReceiver)
+		 .then(()=>{
+			setId3(musicData,id,eventReceiver)
+			 .then(()=>{
+				eventReceiver({
+				 type:"Success",
+				 id
+				})
+			 })
+		 })
+	 })
+ })
 })
 
 http.listen(process.env.PORT || 3000, ()=>{

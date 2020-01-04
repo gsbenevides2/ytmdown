@@ -1,24 +1,17 @@
-const request = require("request")
-require("dotenv").config()
-
-const lyricsApi = request.defaults({
- baseUrl:"https://some-random-api.ml/",
- json:true
+const caramelPuppy = require("caramel-puppy")({
+ __filename
 })
-const yandexApi = request.defaults({
- baseUrl:"https://translate.yandex.net/api/v1.5",
- qs:{key:process.env.YANDEX},
- json:true
-})
+const apis = require("./apis")
 
 function translate(text){
  return new Promise(resolve=>{
-	yandexApi.get({
+	apis.yandex.get({
 	 url:"/tr.json/translate/",
 	 qs:{
 		text,lang:"pt"
 	 }
 	},(error,req,body)=>{
+	 caramelPuppy.request(req)
 	 if(!error && req.statusCode===200) resolve(body.text.join(""))
 	 else resolve(null)
 	})
@@ -27,13 +20,16 @@ function translate(text){
 
 module.exports = (searchTerm)=>{
  return new Promise((resolve,reject)=>{
-	lyricsApi.get({
+	apis.someRandom.get({
 	 url:"/lyrics",
 	 qs:{title:searchTerm}
 	},async (error,req,body)=>{
-	 if(!error){
+	 caramelPuppy.request(req)
+	 if(!error || body.error){
 		const {lyrics} = body
-		const translation = await translate(lyrics) 
+		console.log(lyrics)
+		const translation = await translate(lyrics)
+		console.log(translation)
 		resolve({lyrics,translation})
 	 }
 	 else reject("Erro desconhecido")

@@ -1,11 +1,7 @@
-const request = require("request")
-const apis = {
- deezer: request.defaults({
-	baseUrl:"https://api.deezer.com",
-	json:true
- })
-}
-
+const apis = require("./apis") 
+const caramelPuppy = require("caramel-puppy")({
+ __filename
+})
 function searchInDeezer(searchTerm){
  return new Promise((resolve,reject)=>{
 	const results = []
@@ -15,6 +11,7 @@ function searchInDeezer(searchTerm){
 		q:searchTerm
 	 }
 	},(error,response,body)=>{
+	 caramelPuppy.request(response)
 	 if(!error){
 		body.data.map(result=>{
 		 results.push({
@@ -35,6 +32,7 @@ function getMusicInDeezer(id){
 	apis.deezer.get({
 	 url:`/track/${id}`
 	},(error,response,body)=>{
+	 caramelPuppy.request(response)
 	 if(!error){
 		let name,number,artist,album,year,cover
 		artist = body.artist.name

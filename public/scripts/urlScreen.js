@@ -27,6 +27,10 @@ const urlScreen = new Vue({
 	}
  },
  mounted(){
+	const url = new URL(window.location.href)
+  if(url.searchParams.has("text")){
+	 this.url = url.searchParams.get("text")
+	}
 	this.mdcInput = new mdc.textField.MDCTextField(this.$refs.urlInputContainer)
  },
  template:`

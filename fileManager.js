@@ -12,7 +12,8 @@ module.exports = {
  clearFolders(){
 	fs.rmdirSync("./music",{recursive:true})
 	fs.rmdirSync("./images",{recursive:true})
-	this.configFolders()
+	fs.mkdirSync("music");
+	fs.mkdirSync("images")
  }
 }
 

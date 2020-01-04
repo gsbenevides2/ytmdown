@@ -3,13 +3,7 @@ const ytdl = require("ytdl-core")
 const caramelPuppy = require("caramel-puppy")({
  __filename
 })
-require("dotenv").config()
-
-const youtubeApi = request.defaults({
- baseUrl:"https://www.googleapis.com/youtube/v3",
- qs:{key:process.env.GOOGLEAPI},
- json:true
-})
+const youtubeApi = require("./apis").youtube
 
 function getVideoId(url){
  return new Promise((resolve,reject)=>{

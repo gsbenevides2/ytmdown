@@ -27,15 +27,59 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "index.html",
-    "revision": "56410a3c91233952bf0b629ed1cd2770"
+    "revision": "ffd5f10138b4d69765bc03a43e6f70f9"
   },
   {
-    "url": "scripts.js",
-    "revision": "7e1129d78e77aeb68db57821b9d4eb50"
+    "url": "libraes/mdc.css",
+    "revision": "7da48c001f8021391bbcdd9e38605247"
   },
   {
-    "url": "styles.css",
-    "revision": "cc0eef260c959ba2653ad61d35a2103c"
+    "url": "libraes/vue.js",
+    "revision": "17e942ea0854bd9dce2070bae6826937"
+  },
+  {
+    "url": "scripts/albumScreen.js",
+    "revision": "4ff9db62a8ddedd7169e04e144526609"
+  },
+  {
+    "url": "scripts/albumsScreen.js",
+    "revision": "b3eeb074b378670beddabec813e2f2dd"
+  },
+  {
+    "url": "scripts/fab.js",
+    "revision": "2819b683adf6c547861c76cfe143b687"
+  },
+  {
+    "url": "scripts/firebaseStart.js",
+    "revision": "3cb3940ff2f15bab2c0982210efca6fc"
+  },
+  {
+    "url": "scripts/loadingScreen.js",
+    "revision": "6f486363460644aee7257a9c732c48eb"
+  },
+  {
+    "url": "scripts/lyricsScreen.js",
+    "revision": "7d7ffa0998538f019c3d859cfbe2395d"
+  },
+  {
+    "url": "scripts/progressBar.js",
+    "revision": "db4b845355040188684ae1023feee3df"
+  },
+  {
+    "url": "scripts/topAppBar.js",
+    "revision": "1ff5701e4303980297beea96bdcba7cf"
+  },
+  {
+    "url": "scripts/urlScreen.js",
+    "revision": "cc6cf20119eb617b3e561268d329813a"
+  },
+  {
+    "url": "styles/darkMode.css",
+    "revision": "8d8054e8ef9794cfe72ce20587bb42c2"
+  },
+  {
+    "url": "styles/style.css",
+    "revision": "7eaefad9e78d7c0b94d646bb846ffc0b"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
