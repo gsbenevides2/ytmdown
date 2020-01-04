@@ -16,7 +16,7 @@ switch(platform){
 	break;
 }
 
-function downloadMusic(videoUrl,eventEmitter){
+function downloadMusic(videoUrl,id,eventEmitter){
  return new Promise(resolve=>{
 	eventEmitter({
 	 type:"Log",
@@ -35,7 +35,7 @@ function downloadMusic(videoUrl,eventEmitter){
 		 type:"Log",
 		 message:"Baixando música..."
 		})
-		const filePure = fs.createWriteStream(`${process.cwd()}/music/${info.video_id}_pure.mp3`)
+		const filePure = fs.createWriteStream(`${process.cwd()}/music/${id}_pure.mp3`)
 		progress(request(format.url))
 		 .on('progress',state=>{
 			const percentage = `${(state.percent*100).toFixed(2)}%`
@@ -53,8 +53,8 @@ function downloadMusic(videoUrl,eventEmitter){
 			 type:"Log",
 			 message:"Convertendo arquivo..."
 			})
-			const fileConverted = `${process.cwd()}/music/${info.video_id}.mp3`
-			new ffmpeg(`${process.cwd()}/music/${info.video_id}_pure.mp3`)
+			const fileConverted = `${process.cwd()}/music/${id}.mp3`
+			new ffmpeg(`${process.cwd()}/music/${id}_pure.mp3`)
 			 .audioBitrate(format.audioBitrate)
 			 .withAudioCodec("libmp3lame")
 			 .toFormat("mp3")
@@ -98,7 +98,7 @@ function downloadCapa(imageUrl,id,eventEmitter){
 		console.log("Error",err)
 	 })
 	 .on("end",resolve)
-	 .pipe(fs.createWriteStream(`${__dirname}/images/${id}.jpg`))
+	 .pipe(fs.createWriteStream(`${process.cwd()}/images/${id}.jpg`))
  })
 }
 function setId3(musicData,id,eventEmitter){
@@ -111,7 +111,7 @@ function setId3(musicData,id,eventEmitter){
 	 title:musicData.name,
 	 artist:musicData.artist,
 	 album:musicData.album,
-	 APIC:`${__dirname}/images/${id}.jpg`
+	 APIC:`${process.cwd()}/images/${id}.jpg`
 	}
 	if(musicData.lyrics || musicData.translation){
 	 tags.unsynchronisedLyrics = {
@@ -119,7 +119,7 @@ function setId3(musicData,id,eventEmitter){
 		text:`${musicData.lyrics || ""}\n${musicData.translation || ""}`
 	 }
 	}
-	const success = nodeId3.write(tags, `${__dirname}/music/${id}.mp3`)
+	const success = nodeId3.write(tags, `${process.cwd()}/music/${id}.mp3`)
 	if(success)resolve()
 	else{
 	 eventEmitter({

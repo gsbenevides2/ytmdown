@@ -22,10 +22,10 @@ body.dark{
  color:rgba(255,255,255,0.6) !important;
 }
 .mdc-text-field:not(.mdc-text-field--invalid).mdc-ripple-upgraded--background-focused .mdc-floating-label{
- color: #018786 !important;
+ color: #4169e1 !important;
 }
 .dark .mdc-text-field:not(.mdc-text-field--invalid) .mdc-line-ripple{
- background-color: #018786 !important;
+ background-color: #4169e1 !important;
 }
 /*Card*/
 .dark .mdc-card{

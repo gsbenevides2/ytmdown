@@ -81,13 +81,14 @@ app.get("/clean",(req,res)=>{
  res.send("OK")
 })
 io.on("connection",socket=>{
+ const id = socket.id
  socket.on("downloadMusic",async musicData=>{
 	function eventReceiver(event){
 	 console.log(event)
 	 socket.emit("event",event)
 	}
-	downloadMusic(musicData.url,eventReceiver)
-	 .then(id=>{
+	downloadMusic(musicData.url,id,eventReceiver)
+	 .then(()=>{
 		downloadCapa(musicData.cover,id,eventReceiver)
 		 .then(()=>{
 			setId3(musicData,id,eventReceiver)
