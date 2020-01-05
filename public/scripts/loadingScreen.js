@@ -13,6 +13,7 @@ const loadingScreen = new Vue({
 	 if(data.type === "Success"){
 		progressBar.visible = false
 		this.$refs.lottie.load("https://assets8.lottiefiles.com/datafiles/jEgAWaDrrm6qdJx/data.json")
+		this.$refs.lottie.loop=false
 		this.loadingText= "Sucesso"
 		this.downloadUrl=`/music/${data.id}.mp3`
 	 }
