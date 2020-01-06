@@ -11,7 +11,7 @@ function translate(text){
 		text,lang:"pt"
 	 }
 	},(error,req,body)=>{
-	 caramelPuppy.request(req)
+	 caramelPuppy.request(req,error)
 	 if(!error && req.statusCode===200) resolve(body.text.join(""))
 	 else resolve(null)
 	})
@@ -24,7 +24,7 @@ module.exports = (searchTerm)=>{
 	 url:"/lyrics",
 	 qs:{title:searchTerm}
 	},async (error,req,body)=>{
-	 caramelPuppy.request(req)
+	 caramelPuppy.request(req,error)
 	 if(!error || body.error){
 		const {lyrics} = body
 		console.log(lyrics)

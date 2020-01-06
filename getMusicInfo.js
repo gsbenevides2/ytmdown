@@ -11,7 +11,7 @@ function searchInDeezer(searchTerm){
 		q:searchTerm
 	 }
 	},(error,response,body)=>{
-	 caramelPuppy.request(response)
+	 caramelPuppy.request(response,error)
 	 if(!error){
 		body.data.map(result=>{
 		 results.push({
@@ -32,7 +32,7 @@ function getMusicInDeezer(id){
 	apis.deezer.get({
 	 url:`/track/${id}`
 	},(error,response,body)=>{
-	 caramelPuppy.request(response)
+	 caramelPuppy.request(response,error)
 	 if(!error){
 		let name,number,artist,album,year,cover
 		artist = body.artist.name

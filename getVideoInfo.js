@@ -22,7 +22,7 @@ function generateSearchTerm(videoId){
 		part:"snippet"
 	 }
 	},(error,req,body)=>{
-	 caramelPuppy.request(req)
+	 caramelPuppy.request(req,error)
 	 if(!error && body.pageInfo.totalResults){
 		const {description,title} = body.items[0].snippet
 		const lines = description.split("\n")

@@ -84,7 +84,7 @@ io.on("connection",socket=>{
  const id = socket.id
  socket.on("downloadMusic",async musicData=>{
 	function eventReceiver(event){
-	 console.log(event)
+	 caramelPuppy.log(event)
 	 socket.emit("event",event)
 	}
 	downloadMusic(musicData.url,id,eventReceiver)
