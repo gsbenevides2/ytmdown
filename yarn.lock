@@ -486,9 +486,9 @@ capture-stack-trace@^1.0.0:
   integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
 
 caramel-puppy@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/caramel-puppy/-/caramel-puppy-1.0.3.tgz#80fa05df18c8318f353b1efec42055c24a0c8daa"
-  integrity sha512-atY3xcZR/GjjMyPYsb4Mj5+3l6+dYqquJ40D6UoPtxFT/8VkRjAqFK7RzaEFs4q4nBJcUXLBf99ba6vovWanKg==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/caramel-puppy/-/caramel-puppy-1.0.4.tgz#e5be991541f7da92ecc4cab1eed7d36f1e915922"
+  integrity sha512-anzapvoTcg1ScF4bLo/Yamq8J2qTT5A2bRKSyTYeVYU86QFAU7RyAzBajSQujYyxXZpyMoEMce1NMASHiNvtrw==
   dependencies:
     chalk "^3.0.0"
     dotenv "^8.2.0"

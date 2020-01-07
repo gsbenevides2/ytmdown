@@ -97,7 +97,9 @@ function downloadCapa(imageUrl,id,eventEmitter){
 	 .on("error",err=>{
 		console.log("Error",err)
 	 })
-	 .on("end",resolve)
+	 .on("end",()=>{
+		setTimeout(resolve,2000)
+	 })
 	 .pipe(fs.createWriteStream(`${process.cwd()}/images/${id}.jpg`))
  })
 }
