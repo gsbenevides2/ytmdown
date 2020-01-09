@@ -45,7 +45,10 @@ function downloadMusic(videoUrl,id,eventEmitter){
 			})
 		 })
 		 .on('error',err=>{
-			console.log("Error",err)
+			eventEmitter({
+		 type:"Error",
+		 message:err
+		})
 		 })
 		 .on(`end`,()=>{
 			console.log("End")
@@ -67,7 +70,10 @@ function downloadMusic(videoUrl,id,eventEmitter){
 				})
 			 }))
 			 .on("error",err=>{
-				console.log("Error",err)
+				eventEmitter({
+		 type:"Error",
+		 message:err
+		})
 			 })
 			 .on("end",()=>{
 				console.log("End")
@@ -95,9 +101,16 @@ function downloadCapa(imageUrl,id,eventEmitter){
 		})
 	 })
 	 .on("error",err=>{
-		console.log("Error",err)
+		eventEmitter({
+		 type:"Error",
+		 message:err
+		})
 	 })
 	 .on("end",()=>{
+		eventEmitter({
+		 type:"Log",
+		 message:"Aguarde"
+		})
 		setTimeout(resolve,2000)
 	 })
 	 .pipe(fs.createWriteStream(`${process.cwd()}/images/${id}.jpg`))

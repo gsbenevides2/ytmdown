@@ -10,12 +10,18 @@ const loadingScreen = new Vue({
 	 if(data.type==='Log'){
 		this.loadingText=data.message
 	 }
-	 if(data.type === "Success"){
+	 else if(data.type === "Success"){
 		progressBar.visible = false
 		this.$refs.lottie.load("https://assets8.lottiefiles.com/datafiles/jEgAWaDrrm6qdJx/data.json")
 		this.$refs.lottie.loop=false
 		this.loadingText= "Sucesso"
 		this.downloadUrl=`/music/${data.id}.mp3`
+	 }
+	 else if(data.type==="Error"){
+		progressBar.visible = false
+		this.$refs.lottie.load("https://assets8.lottiefiles.com/packages/lf20_eKtxVc.json")
+		this.$refs.loop=false
+		this.loadingText=data.message
 	 }
 	}
  },

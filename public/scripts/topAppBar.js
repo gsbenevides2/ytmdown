@@ -26,6 +26,8 @@ const topAppBar = new Vue({
 		}
 		else if(loadingScreen.visible){
 		 loadingScreen.visible = false
+		 loadingScreen.$refs.lottie.load("https://assets7.lottiefiles.com/temp/lf20_aiGIon.json")
+		 loadingScreen.$refs.lottie.loop = true	
 		 urlScreen.visible = true
 		 this.navigationIcon = "menu"
 		 fab.visible = true
