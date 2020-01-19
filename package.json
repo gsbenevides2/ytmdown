@@ -16,13 +16,40 @@
 		"ytdl-core": "^1.0.3"
 	},
 	"scripts": {
-		"start": "node .",
-		"guiDev": "clear && nodemon",
-		"test": "mocha './!(node_modules)/**/*.spec.js'"
+		"start": "node backend/index.js",
+		"dev": "nodemon backend/index.js"
 	},
 	"devDependencies": {
-		"mocha": "^6.2.2",
+		"minify-cli": "^1.0.0",
 		"nodemon": "^2.0.2",
 		"workbox-cli": "^4.3.1"
+	},
+	"minify-cli": {
+		"src": "web",
+		"dest": "public",
+		"copyAll": true,
+		"files": {
+			"js": [
+				"libraes/vue.js",
+				"scripts/albumScreen.js",
+				"scripts/albumsScreen.js",
+				"scripts/fab.js",
+				"scripts/firebaseStart.js",
+				"scripts/loadingScreen.js",
+				"scripts/lyricsScreen.js",
+				"scripts/progressBar.js",
+				"scripts/topAppBar.js",
+				"scripts/urlScreen.js",
+				"sw.js"
+			],
+			"css": [
+				"libraes/mdc.css",
+				"styles/darkMode.css",
+				"styles/style.css"
+			],
+			"html": [
+				"index.html"
+			]
+		}
 	}
 }

@@ -1,0 +1,62 @@
+<html>
+ <head>
+	<!--script src="//cdn.jsdelivr.net/npm/eruda"></script>
+	<script>
+	 eruda.init();
+	 window.onerror= (message,file,line,character,object)=>{
+		console.groupCollapsed("Error Details:",message)
+		console.log("File:",file)
+		console.log("Line:",line)
+		console.log("Character:",character)
+		console.log("Object:",object)
+		console.groupEnd()
+		eruda.show()
+	 }
+	</script-->
+		<meta name="theme-color" content="#4169e1"/>
+		<meta name="viewport" content="width=device-width user-scalable=no"/>
+		<link rel="manifest" href="/manifest.json"/>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="libraes/mdc.css" rel="stylesheet">
+		<link rel="stylesheet" href="./styles/style.css"/>
+		<link rel="stylesheet" href="./styles/darkMode.css">
+		<title>Youtube Music Downloader</title>
+		</head>
+		<body class="mdc-typography">
+		<div id="topAppBar"></div>
+		<div id="progressBar"></div>
+		<div id="urlScreen"></div>
+		<div id="lyricsScreen"></div>
+		<div id="albumScreen"></div>
+		<div id="loadingScreen"></div>
+		<div id="albumsScreen"></div>
+		<div id="selectDataScreen"></div>
+		<div id="fab"></div>
+		</body>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+		<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+		<script src="libraes/vue.js"></script>
+		<script src="scripts/topAppBar.js"></script>
+		<script src="scripts/fab.js"></script>
+		<script src="scripts/loadingScreen.js"></script>
+		<script src="scripts/urlScreen.js"></script>
+		<script src="scripts/albumScreen.js"></script>
+		<script src="scripts/albumsScreen.js"></script>
+		<script src="scripts/progressBar.js"></script>
+		<script src="scripts/lyricsScreen.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-performance.js"></script>
+		<script src="scripts/firebaseStart.js"></script>
+		<script>
+		 // Check that service workers are supported
+		 if ('serviceWorker' in navigator) {
+			// Use the window load event to keep the page load performant
+			window.addEventListener('load', () => {
+			 navigator.serviceWorker.register('/sw.js');
+			});
+		 }
+		</script>
+</html>

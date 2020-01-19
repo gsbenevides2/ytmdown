@@ -1,0 +1,12 @@
+jobs:
+ include:
+  - stage: Build new SW
+    script: "yarn workbox generateSW workbox-config.js"
+  - stage: Build Web Folder
+    script: "yarn minify-cli start"
+  - stage: Deploy to Heroku
+    script: skip
+    deploy:
+     provider: heroku
+     api_key: "$HEROKU_KEY"
+
