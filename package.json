@@ -1,4 +1,4 @@
-{
+i{
 	"name": "YTMusic",
 	"version": "1.0.0",
 	"main": "index.js",
@@ -27,7 +27,7 @@
 	},
 	"minify-cli": {
 		"src": "web",
-		"dest": "public",
+		"dest": "backend/public",
 		"copyAll": true,
 		"files": {
 			"js": [

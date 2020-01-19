@@ -28,7 +28,7 @@ const {
  clearFolders
 } = require("./fileManager")
 configFolders()
-app.use(express.static("../public"))
+app.use(express.static("public"))
 app.disable('etag')
 
 app.get("/album",async (req,res)=>{
