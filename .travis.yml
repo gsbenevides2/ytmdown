@@ -1,9 +1,10 @@
+language: "node_js"
 jobs:
  include:
-  - stage: Build new SW
-    script: "yarn workbox generateSW workbox-config.js"
   - stage: Build Web Folder
     script: "yarn minify-cli start"
+  - stage: Build new SW
+    script: "yarn workbox generateSW workbox-config.js"
   - stage: Deploy to Heroku
     script: skip
     deploy:
