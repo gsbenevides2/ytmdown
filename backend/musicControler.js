@@ -24,6 +24,7 @@ function downloadMusic(videoUrl,id,eventEmitter){
 	})
 	ytdl.getInfo(videoUrl,(err,info)=>{
 	 if(err){
+		console.log("Error",err)
 		eventEmitter({
 		 type:"Error",
 		 message:err
