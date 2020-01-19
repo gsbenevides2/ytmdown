@@ -4,9 +4,7 @@ node_js:
 jobs:
  include:
   - stage: Build Web Folder
-    script: "yarn minify-cli start"
-  - stage: Build new SW
-    script: "yarn workbox generateSW workbox-config.js"
+    script: "yarn build"
   - stage: Deploy to Heroku
     script: skip
     deploy:

@@ -94,6 +94,6 @@ typings/
 .dynamodb/
 
 music/
-public/
+backend/public/
 images/
 # End of https://www.gitignore.io/api/node
