@@ -17,6 +17,7 @@
 	},
 	"scripts": {
 		"start": "node backend/index.js",
+		"build":"minify-cli start && workbox generateSW workbox-config.js",
 		"dev": "nodemon backend/index.js"
 	},
 	"devDependencies": {
