@@ -74,7 +74,7 @@ app.get("/lyrics/",(req,res)=>{
 	.catch(e=>{res.status(400).send(e)})
 })
 app.get("/music/:id.mp3",(req,res)=>{
- res.sendFile(`${__dirname}/music/${req.params.id}.mp3`)
+ res.sendFile(`${__dirname}/backend/music/${req.params.id}.mp3`)
 })
 app.get("/clean",(req,res)=>{
  clearFolders()
