@@ -3,7 +3,7 @@ const ytdl = require("ytdl-core")
 const caramelPuppy = require("caramel-puppy")({
  __filename
 })
-const youtubeApi = require("./apis").youtube
+const youtubeApi = require("./services/apis").youtube
 
 function getVideoId(url){
  return new Promise((resolve,reject)=>{

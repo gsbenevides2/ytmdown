@@ -1,4 +1,4 @@
-const apis = require("./apis") 
+const apis = require("./services/apis") 
 const caramelPuppy = require("caramel-puppy")({
  __filename
 })

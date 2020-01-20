@@ -93,7 +93,7 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-music/
+backend/music/
 backend/public/
-images/
+backend/images/
 # End of https://www.gitignore.io/api/node

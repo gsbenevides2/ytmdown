@@ -1,7 +1,7 @@
 const caramelPuppy = require("caramel-puppy")({
  __filename
 })
-const apis = require("./apis")
+const apis = require("./services/apis")
 
 function translate(text){
  return new Promise(resolve=>{
