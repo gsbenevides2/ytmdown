@@ -95,5 +95,5 @@ typings/
 
 backend/music/
 backend/public/
-backend/images/
+backend/image/
 # End of https://www.gitignore.io/api/node

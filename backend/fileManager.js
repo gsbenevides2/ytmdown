@@ -3,11 +3,11 @@ const path = require("path")
 
 const musicPath = path.join(
  process.cwd(),
- "/music"
+ "/backend/music"
 )
 const imagePath = path.join(
  process.cwd(),
- "/image"
+ "/backend/image"
 )
 
 module.exports = {

@@ -19,14 +19,7 @@ app.get("/music/:id.mp3",
  (request,response)=>{
 	const {id} = request.params
 	const stream = getMusicFile(id)
-	stream.pipe(response);
-	stream.on('data',data=>{
-    response.write(data);
-  });
-
-	stream.on('end',()=>{
-    response.end();
-  });
+	response.sendFile(stream.path)
  }
 )
 io.on("connection",socket=>{
