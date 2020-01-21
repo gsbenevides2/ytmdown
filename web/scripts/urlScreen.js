@@ -22,7 +22,8 @@ const urlScreen = new Vue({
 		 this.mdcInput.focus()
 		})
 		.catch(error=>{
-		 console.log(error)
+		 alert("Ocorreu um erro")
+		 console.error(error)
 		})
 	}
  },

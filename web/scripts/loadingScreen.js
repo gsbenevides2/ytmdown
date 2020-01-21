@@ -3,33 +3,64 @@ const loadingScreen = new Vue({
  data:{
 	visible:false,
 	loadingText:"Carregando",
-	downloadUrl:null
+	downloadUrl:null,
+	error:false,
+	lottie:{}
  },
  methods:{
+	downloadStart(musicData){
+	 this.musicData = musicData
+		this.$refs.lottie.load(this.lottie.loading)
+	 this.error = false
+	 this.socket = io();
+	 progressBar.visible = true
+	 this.visible = true
+	 this.socket.emit("downloadMusic",musicData)
+	 this.socket.on("event",eventData=>{
+		this.event(eventData)
+	 })
+	},
 	event(data){
 	 if(data.type==='Log'){
 		this.loadingText=data.message
 	 }
 	 else if(data.type === "Success"){
 		progressBar.visible = false
-		this.$refs.lottie.load("https://assets8.lottiefiles.com/datafiles/jEgAWaDrrm6qdJx/data.json")
+		this.$refs.lottie.load(this.lottie.success)
 		this.$refs.lottie.loop=false
 		this.loadingText= "Sucesso"
 		this.downloadUrl=`/music/${data.id}.mp3`
 	 }
 	 else if(data.type==="Error"){
 		progressBar.visible = false
-		this.$refs.lottie.load("https://assets8.lottiefiles.com/packages/lf20_eKtxVc.json")
+		this.$refs.lottie.load(this.lottie.error)
 		this.$refs.loop=false
-		this.loadingText=data.message
+		this.loadingText="Erro"
+		this.error = true
+		this.socket.disconnect()
 	 }
 	}
+ },
+ mounted(){
+	fetch("https://assets7.lottiefiles.com/temp/lf20_aiGIon.json")
+	 .then(async response=>{
+		this.lottie.loading = await response.json()
+		this.$refs.lottie.load(this.lottie.loading)
+	 })
+	fetch("https://assets2.lottiefiles.com/datafiles/jXqHQIXI6oO6V47/data.json")
+	 .then(async response=>{
+		this.lottie.success = await response.json()
+	 })
+	fetch("https://assets8.lottiefiles.com/packages/lf20_eKtxVc.json")
+	 .then(async response=>{
+		this.lottie.error = await response.json()
+	 })
+
  },
  template:`
  <div v-show="visible" style="text-align:center">
 	<lottie-player
 		ref="lottie"
-		src="https://assets7.lottiefiles.com/temp/lf20_aiGIon.json"
 		background="transparent"
 		speed="1"
 		style="width:300px;height:300px;display:inline-block;"
@@ -37,6 +68,8 @@ const loadingScreen = new Vue({
 	</lottie-player>
 	<p>{{loadingText}}</p>
 	<a download v-bind:href="downloadUrl" class="mdc-button" v-show="downloadUrl">Baixar musica</a>
+
+	<button v-show="error" @click="downloadStart(musicData)" class="mdc-button">Tentar Novamente</a>
 	</div>
 	`
 })

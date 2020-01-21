@@ -1,7 +1,7 @@
 const topAppBar = new Vue({
  el:"#topAppBar",
  data:{
-	navigationIcon:"menu",
+	navigationIcon:"",
 	darkMode:false
  },
  methods:{
@@ -14,7 +14,7 @@ const topAppBar = new Vue({
 		 albumsScreen.visible = false
 		 urlScreen.visible = true
 		 fab.visible = true
-		 this.navigationIcon = "menu"
+		 this.navigationIcon = ""
 		}
 		else if(albumScreen.visible){
 		 albumScreen.visible = false
@@ -26,10 +26,12 @@ const topAppBar = new Vue({
 		}
 		else if(loadingScreen.visible){
 		 loadingScreen.visible = false
-		 loadingScreen.$refs.lottie.load("https://assets7.lottiefiles.com/temp/lf20_aiGIon.json")
+		 loadingScreen.downloadUrl = null
+		 loadingScreen.loadingText = "Carregando"
+		 loadingScreen.$refs.lottie.load(loadingScreen.lottie.loading)
 		 loadingScreen.$refs.lottie.loop = true	
 		 urlScreen.visible = true
-		 this.navigationIcon = "menu"
+		 this.navigationIcon = ""
 		 fab.visible = true
 
 		}
@@ -55,7 +57,7 @@ const topAppBar = new Vue({
  <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
 	<div class="mdc-top-app-bar__row">
 	 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-		<button @click="navigationClick" class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">{{navigationIcon}}</button>  
+		<button v-show="navigationIcon" @click="navigationClick" class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">{{navigationIcon}}</button>  
 		<span @click="home" class="mdc-top-app-bar__title">YouTube Music Downloader</span>
 	 </section>
 	 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">

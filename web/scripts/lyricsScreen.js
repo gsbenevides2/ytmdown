@@ -11,15 +11,9 @@ const lyricsScreen = new Vue({
 	 musicData.lyrics = lyrics ? this.lyrics.join("\n") : null
 	 musicData.translation = translation ? this.translation.join("\n") : null
 	 musicData.url = urlScreen.url
-	 const socket = io();
-	 progressBar.visible = true
 	 this.visible = false
-	 loadingScreen.visible = true
-	 socket.emit("downloadMusic",musicData)
-	 socket.on("event",eventData=>{
-		loadingScreen.event(eventData)
-	 })
-	}
+	 loadingScreen.downloadStart(musicData)
+	 	}
  },
  template:`
  <div v-show="visible" class="screen">
