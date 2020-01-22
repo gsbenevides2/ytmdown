@@ -3,18 +3,36 @@ const caramelPuppy = require("caramel-puppy")({
 })
 const apis = require("./services/apis")
 
-function translate(text){
- return new Promise(resolve=>{
-	apis.yandex.get({
-	 url:"/tr.json/translate/",
-	 qs:{
-		text,lang:"pt"
-	 }
-	},(error,req,body)=>{
-	 caramelPuppy.request(req,error)
-	 if(!error && req.statusCode===200) resolve(body.text.join(""))
-	 else resolve(null)
+function translateLyrics(lyrics){
+ function translateText(text){
+	return new Promise((resolve,reject)=>{
+	 if(text === "") return resolve("")
+	 apis.yandex.get({
+		url:"/tr.json/translate",
+		qs:{
+		 text,lang:"pt"
+		}
+	 },(error,req,body)=>{
+		caramelPuppy.request(req,error)
+		if(!error && req.statusCode===200) resolve(body.text.join(""))
+		else reject()
+	 })
 	})
+ }
+ return new Promise(resolve=>{
+
+	const translations = 
+	 lyrics.split("\n")
+	 .map(translateText)
+	Promise.all(translations)
+	 .then(translation=>{
+		console.log(translation)
+		resolve(translation.join("\n"))
+	 })
+	 .catch(()=>{
+		resolve(null)
+	 })
+
  })
 }
 
@@ -28,7 +46,7 @@ module.exports = (searchTerm)=>{
 	 if(!error || body.error){
 		const {lyrics} = body
 		console.log(lyrics)
-		const translation = await translate(lyrics)
+		const translation = await translateLyrics(lyrics)
 		console.log(translation)
 		resolve({lyrics,translation})
 	 }
