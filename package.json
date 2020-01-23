@@ -19,11 +19,9 @@
 		"start": "node backend/index.js",
 		"build": "minify-cli start && workbox generateSW workbox-config.js",
 		"dev": "nodemon backend/index.js",
-		"web":"live-server web/",
-		"webBack":"nodemon backend/index_webTest.js"
+		"web": "nodemon backend/index_webTest.js"
 	},
 	"devDependencies": {
-		"live-server": "^1.2.1",
 		"minify-cli": "^1.0.0",
 		"nodemon": "^2.0.2",
 		"workbox-cli": "^4.3.1"
