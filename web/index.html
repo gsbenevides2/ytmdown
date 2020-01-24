@@ -2,8 +2,8 @@
  <head>
 	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
 	<script>
-	 eruda.init();
 	 if(window.location.hostname === "localhost"){
+	 eruda.init();
 		window.onerror= (message,file,line,character,object)=>{
 		 console.groupCollapsed("Error Details:",message)
 		 console.log("File:",file)
