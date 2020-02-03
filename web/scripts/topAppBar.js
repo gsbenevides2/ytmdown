@@ -2,7 +2,8 @@ const topAppBar = new Vue({
  el:"#topAppBar",
  data:{
 	navigationIcon:"",
-	darkMode:false
+	darkMode:false,
+	notificationMode:false
  },
  methods:{
 	navigationClick(){
@@ -42,6 +43,20 @@ const topAppBar = new Vue({
 	 this.darkMode = !this.darkMode
 	 localStorage.setItem("darkMode",this.darkMode)
 	},
+	toggleNotificationMode(){
+	 if(this.notificationMode){
+		this.notificationMode = false
+	 }
+	 else {
+		Notification
+		 .requestPermission()
+		 .then(()=>{
+			this.notificationMode = true
+			alert("Agora quando o dowmload for concluido você recebera um notificação")
+		 })
+		 .catch()
+	 }
+	},
 	home(){
 	 window.location.href = "/"
 	}
@@ -61,6 +76,7 @@ const topAppBar = new Vue({
 		<span @click="home" class="mdc-top-app-bar__title">YouTube Music Downloader</span>
 	 </section>
 	 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+		<button @click="toggleNotificationMode" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Download">{{notificationMode? 'notifications_active' :'notifications_off'}}</button>
 		<button @click="toggleDarkMode" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Download">{{darkMode? 'brightness_low' :'brightness_2'}}</button>
 	 </section>
 	</div>

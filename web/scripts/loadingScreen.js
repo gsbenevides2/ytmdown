@@ -25,6 +25,15 @@ const loadingScreen = new Vue({
 		this.loadingText=data.message
 	 }
 	 else if(data.type === "Success"){
+		if(topAppBar.notificationMode){
+		 navigator.serviceWorker
+			.getRegistration()
+			.then(registration=>{
+			 registration.showNotification("Download Concluido",{
+				icon:'/icons/icon-128x128.png'
+			 })
+			})
+		}
 		progressBar.visible = false
 		this.$refs.lottie.load(this.lottie.success)
 		this.$refs.lottie.loop=false

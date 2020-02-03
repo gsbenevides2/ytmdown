@@ -19,7 +19,8 @@
 		"start": "node backend/index.js",
 		"build": "minify-cli start && workbox generateSW workbox-config.js",
 		"dev": "nodemon backend/index.js",
-		"web": "nodemon backend/index_webTest.js"
+		"web": "nodemon backend/index_webTest.js",
+		"download-env":"heroku config -s -a ytmdown > .env"
 	},
 	"devDependencies": {
 		"minify-cli": "^1.0.0",
