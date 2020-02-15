@@ -45,10 +45,13 @@ module.exports = (searchTerm)=>{
 	 caramelPuppy.request(req,error)
 	 if(!error || body.error){
 		const {lyrics} = body
+		if(lyrics){
 		console.log(lyrics)
 		const translation = await translateLyrics(lyrics)
 		console.log(translation)
 		resolve({lyrics,translation})
+	 }
+		else resolve({lyrics:null,translation:null})
 	 }
 	 else reject("Erro desconhecido")
 	})
