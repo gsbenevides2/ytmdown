@@ -20,7 +20,7 @@
 		"build": "minify-cli start && workbox generateSW workbox-config.js",
 		"dev": "nodemon backend/index.js",
 		"web": "nodemon backend/index_webTest.js",
-		"download-env":"heroku config -s -a ytmdown > .env"
+		"download-env": "heroku config -s -a ytmdown > .env"
 	},
 	"devDependencies": {
 		"minify-cli": "^1.0.0",
@@ -32,7 +32,10 @@
 		"dest": "backend/public",
 		"copyAll": true,
 		"files": {
-			"html": [],
+			"html": [
+				"about.html",
+				"index.html"
+			],
 			"css": [
 				"libraes/mdc.css",
 				"styles/darkMode.css",

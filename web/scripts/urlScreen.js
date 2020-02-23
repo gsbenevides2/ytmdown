@@ -49,6 +49,9 @@ const urlScreen = new Vue({
 	<div style="text-align:right;">
 	 <button @click="copyFromClipboard" style="display:inline" class="mdc-icon-button material-icons">content_paste</button>
 	</div>
+	<p class='to-about'>
+	  <a href='/about'>Saiba Mais</a>
+	</p>
  </div>
  `
 })

@@ -13,7 +13,7 @@ const {
  getMusicFile
 }= require("./musicDownloader")
 app.use(routes)
-app.use(express.static("web"))
+app.use(express.static("web",{extensions:['html']}))
 app.disable('etag')
 app.get("/music/:id.mp3",
  (request,response)=>{

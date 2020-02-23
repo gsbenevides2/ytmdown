@@ -35,3 +35,9 @@ body{
 .lyrics .translation{
  background-color:rgba(0,0,0,.2);
 }
+.to-about{
+ text-align:center;
+}
+a,a:link,a:hover,a:visited,a:active{
+ color: #4169e1;
+}
