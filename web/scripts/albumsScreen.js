@@ -27,10 +27,12 @@ const albumsScreen = new Vue({
 		 alert(`Ocorreu um erro:${error.message}`)
 		})
 	},
-	search(){
+	search(e){
+	 e.target.blur()
 	 progressBar.visible = true
 	 fetch(`/album?url=${urlScreen.url}&searchTerm=${this.musicName}`)
 		.then(async res=>{
+		 window.scrollTo(0,0);
 		 if(res.status === 200){
 			fab.video= await res.json()
 			this.albums = fab.video.albumResults
@@ -52,14 +54,6 @@ const albumsScreen = new Vue({
  },
  template:`
 	<div v-show="visible" class="screen">
-	 <div v-show="albums.length === 0">
-		<h4 class="mdc-typography--headline6">Por favor digite o nome da música:</h4>
-		<div ref="musicName" class="mdc-text-field">
-		 <input @keyup.enter="search"  v-model="musicName" id="musicName" class="mdc-text-field__input"/>
-		 <label for="musicName" class="mdc-floating-label">Nome da música</label>
-		 <div class="mdc-line-ripple"></div>
-		</div>
-	 </div>
 	 <ul style="padding:0">
 		<li v-for="music in albums" @click="selectMusic(music.id)" class="mdc-card" style="width:100%; margin-bottom:10px;">
 		 <div class="mdc-card__primary-action" style="display:flex;flex-direction:row;">
@@ -71,6 +65,15 @@ const albumsScreen = new Vue({
 		 </div>
 		</li>
 	 </ul>
+	 <div>
+		<h4 v-show="albums.length !== 0" class="mdc-typography--headline6">Ops não encontrou o que procura? Tente pela busca manual:</h4>
+		<h4 v-show="albums.length === 0" class="mdc-typography--headline6">Ops não consegui encontrar automaticamente, tente digitar algo:</h4>
+		<div ref="musicName" class="mdc-text-field">
+		 <input @keyup.enter="search"  v-model="musicName" id="musicName" class="mdc-text-field__input"/>
+		 <label for="musicName" class="mdc-floating-label">Nome da música</label>
+		 <div class="mdc-line-ripple"></div>
+		</div>
+	 </div>
 	</div>
 	`
 });

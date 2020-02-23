@@ -37,7 +37,7 @@ const urlScreen = new Vue({
  template:`
  <div v-show="visible" class="screen">
 	<div ref="urlInputContainer" class="mdc-text-field">
-	 <input @keyup.enter="fab.click" @blur="disableError" v-model="url" id="urlInput" class="mdc-text-field__input" type="text"/>
+	 <input @keyup.enter="fab.click" @blur="disableError" v-model="url" id="urlInput" class="mdc-text-field__input" type="text" autocomplete="off"/>
 	 <label class="mdc-floating-label" for="urlInput">Insira a url</label>
 	 <div class="mdc-line-ripple"></div>
 	</div>

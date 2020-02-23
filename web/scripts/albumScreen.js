@@ -40,27 +40,27 @@ const albumScreen = new Vue({
 	 <div class="mdc-card__media mdc-card__media--square" v-bind:style="{backgroundImage:'url(&quot;'+music.cover+'&quot;)'}"></div>
 	 <div style="padding:12px;">
 		<div class="mdc-text-field">
-			<input v-model="music.name" id="musicNameInput" class="mdc-text-field__input" type="text"/>
+			<input v-model="music.name" id="musicNameInput" class="mdc-text-field__input" type="text" autocomplete="off"/>
 			<label class="mdc-floating-label" for="musicNameInput">Nome da Música</label>
 		 <div class="mdc-line-ripple"></div>
 		</div>
 		<div class="mdc-text-field">
-		 <input v-model="music.artist" id="musicArtistInput" class="mdc-text-field__input" type="text"/>
+		 <input v-model="music.artist" id="musicArtistInput" class="mdc-text-field__input" type="text" autocomplete="off"/>
 		 <label class="mdc-floating-label" for="musicArtistInput">Nome do Artista</label>
 		 <div class="mdc-line-ripple"></div>
 		</div>
 		<div class="mdc-text-field">
-		 <input v-model="music.album" id="musicAlbumInput" class="mdc-text-field__input" type="text"/>
+		 <input v-model="music.album" id="musicAlbumInput" class="mdc-text-field__input" type="text" autocomplete="off"/>
 		 <label class="mdc-floating-label" for="musicAlbumInput">Nome do Album</label>
 		 <div class="mdc-line-ripple"></div>
 		</div>
 		<div class="mdc-text-field">
-		 <input v-model="music.number" id="musicNumberInput" class="mdc-text-field__input" type="number"/>
+		 <input v-model="music.number" id="musicNumberInput" class="mdc-text-field__input" type="number" autocomplete="off"/>
 		 <label class="mdc-floating-label" for="musicAlbumInput">Numero da faixa</label>
 		 <div class="mdc-line-ripple"></div>
 		</div>
 		<div class="mdc-text-field">
-		 <input v-model="music.year" id="musicYearInput" class="mdc-text-field__input" type="number"/>
+		 <input v-model="music.year" id="musicYearInput" class="mdc-text-field__input" type="number" autocomplete="off"/>
 		 <label class="mdc-floating-label" for="musicAlbumInput">Ano</label>
 		 <div class="mdc-line-ripple"></div>
 		</div>
