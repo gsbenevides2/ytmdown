@@ -1,6 +1,9 @@
 const express  = require("express")
 const app = express()
 const cors = require('cors')
+const http = require("http").Server(app)
+const io = require("socket.io")(http)
+const routes = require("./routes")
 
 const whitelist = [
 'http://localhost:3000',
@@ -8,33 +11,36 @@ const whitelist = [
 'https://ytmdown.web.app',
 'https://ytmdown.firebaseapp.com',
 'https://ytmdown.herokuapp.com',
+ undefined
 ]
 const corsOptions = {
  origin: function (origin, callback) {
-	const whitelistExpress = [...whitelist,undefined]
-	if (whitelistExpress.indexOf(origin) !== -1) {
+	if (whitelist.indexOf(origin) !== -1) {
 	 callback(null, true)
 	} else {
 	 callback(new Error('Not allowed by CORS'))
 	}
  }
 }
+
+io.origins(corsOptions.origin)
 app.use(cors(corsOptions))
+
 const caramelPuppy = require("caramel-puppy")({
  __filename,
  express:app
 })
 caramelPuppy.appStart()
-const http = require("http").Server(app)
-const io = require("socket.io")(http)
-io.origins(cors(corsOptions))
-const routes = require("./routes")
+
+
 const {
  DownloaderMusic,
  getMusicFile
 }= require("./musicDownloader")
+
 app.use(routes)
 app.disable('etag')
+
 app.get("/",(request,response)=>{
  response.status(301).set('Location','https://ytmdown.web.app').send()
 })
