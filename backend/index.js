@@ -8,11 +8,10 @@ const whitelist = [
 'https://ytmdown.web.app',
 'https://ytmdown.firebaseapp.com',
 'https://ytmdown.herokuapp.com',
- undefined
 ]
 const corsOptions = {
  origin: function (origin, callback) {
-	console.log(origin)
+	const whitelist = [...whitelist,undefined]
 	if (whitelist.indexOf(origin) !== -1) {
 	 callback(null, true)
 	} else {
