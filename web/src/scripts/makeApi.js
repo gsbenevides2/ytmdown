@@ -1,6 +1,6 @@
 function makeUrl(){
  if(window.location.hostname === 'localhost'){
-	return  `http://localhost:3000`
+	return  `http://localhost:3000/`
  }
  else return 'https://ytmdown.herokuapp.com/'
 }
