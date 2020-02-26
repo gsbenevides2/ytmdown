@@ -38,7 +38,7 @@ const loadingScreen = new Vue({
 		this.$refs.lottie.load(this.lottie.success)
 		this.$refs.lottie.loop=false
 		this.loadingText= "Sucesso"
-		this.downloadUrl=`/music/${data.id}.mp3`
+		this.downloadUrl=`${makeUrl()}music/${data.id}.mp3`
 	 }
 	 else if(data.type==="Error"){
 		progressBar.visible = false
