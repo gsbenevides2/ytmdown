@@ -3,8 +3,8 @@ node_js:
  - 10
 jobs:
  include:
-  - stage: Build Web Folder
-    script: "yarn build"
+  - stage: Deploy to Firebase
+    script: "yarn deploy-web"
   - stage: Deploy to Heroku
     script: skip
     deploy:

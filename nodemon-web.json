@@ -1,0 +1,7 @@
+{
+ "ignore":[
+	"./web/public/",
+	"./backend/",
+	"caramelPuppy.json"
+ ]
+}

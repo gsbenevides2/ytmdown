@@ -10,21 +10,15 @@ const albumsScreen = new Vue({
 	 progressBar.visible = true
 	 fetch(`/music?id=${id}`)
 		.then(async res=>{
-		 if(res.status === 200){
-			const music = await res.json()
-			albumsScreen.visible = false
-			albumScreen.visible = true
-			albumScreen.music = music
-		 }
-		 else{
-			const text = await res.text()
-			throw new Error(text)
-		 }
+		 const music =  res.data
+		 albumsScreen.visible = false
+		 albumScreen.visible = true
+		 albumScreen.music = music
 		 progressBar.visible = false
 		})
 		.catch(error=>{
 		 progressBar.visible = false
-		 alert(`Ocorreu um erro:${error.message}`)
+		 alert(`Ocorreu um erro:${error.request.responseText||error.message}`)
 		})
 	},
 	search(e){
@@ -33,19 +27,13 @@ const albumsScreen = new Vue({
 	 fetch(`/album?url=${urlScreen.url}&searchTerm=${this.musicName}`)
 		.then(async res=>{
 		 window.scrollTo(0,0);
-		 if(res.status === 200){
-			fab.video= await res.json()
-			this.albums = fab.video.albumResults
-		 }
-		 else{
-			const text = await res.text()
-			throw new Error(text)
-		 }
+		 fab.video= res.data
+		 this.albums = fab.video.albumResults
 		 progressBar.visible = false
 		})
 		.catch(error=>{
 		 progressBar.visible = false
-		 alert(error.message)
+		 alert(error.request.responseText||error.message)
 		})
 	}
  },

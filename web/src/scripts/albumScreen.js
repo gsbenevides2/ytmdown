@@ -9,22 +9,16 @@ const albumScreen = new Vue({
 	 progressBar.visible = true
 	 fetch(`/lyrics?name=${this.music.name}&artist=${this.music.artist}`)
 		.then(async res=>{
-		 if(res.status === 200){
-			const data = await res.json()
-			albumScreen.visible = false
-			lyricsScreen.visible = true
-			lyricsScreen.lyrics = data.lyrics? data.lyrics.split("\n") : null
-			lyricsScreen.translation = data.translation? data.translation.split("\n") :null
-		 }
-		 else{
-			const text = await res.text()
-			throw new Error(text)
-		 }
+		 const {data} = res
+		 albumScreen.visible = false
+		 lyricsScreen.visible = true
+		 lyricsScreen.lyrics = data.lyrics? data.lyrics.split("\n") : null
+		 lyricsScreen.translation = data.translation? data.translation.split("\n") :null
 		 progressBar.visible = false
 		})
 		.catch(error=>{
 		 progressBar.visible = false
-		 alert(`Ocorreu um erro:${error.message}`)
+		 alert(`Ocorreu um erro:${error.request.responseText||error.message}`)
 		})
 	},
  },

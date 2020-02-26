@@ -11,23 +11,18 @@ const fab = new Vue({
 		this.visible = false
 		fetch(`/album?url=${urlScreen.url}`)
 		 .then(async res=>{
-			if(res.status === 200){
-			 this.video= await res.json()
-			 albumsScreen.albums = this.video.albumResults
-			 urlScreen.visible = false
-			 topAppBar.navigationIcon = "arrow_back"
-			 albumsScreen.visible = true
-			}
-			else{
-			 const text = await res.text()
-			 throw new Error(text)
-			}
+			this.video= await res.data
+			albumsScreen.albums = this.video.albumResults
+			urlScreen.visible = false
+			topAppBar.navigationIcon = "arrow_back"
+			albumsScreen.visible = true
 			progressBar.visible = false
 		 })
 		 .catch(error=>{
+			console.log()
 			this.visible=true
 			progressBar.visible = false
-			urlScreen.invalid(error.message)
+			urlScreen.invalid(error.request.responseText || error.message)
 		 })
 	 }
 	}
