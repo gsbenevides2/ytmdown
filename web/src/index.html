@@ -1,18 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html lang='pt-br'>
  <head>
-	<script src="//cdn.jsdelivr.net/npm/eruda"></script>
 	<script>
 	 if(window.location.hostname === "localhost"){
-	 eruda.init();
-		window.onerror= (message,file,line,character,object)=>{
-		 console.groupCollapsed("Error Details:",message)
-		 console.log("File:",file)
-		 console.log("Line:",line)
-		 console.log("Character:",character)
-		 console.log("Object:",object)
-		 console.groupEnd()
-		 eruda.show()
-		}
+		fetch('//cdn.jsdelivr.net/npm/eruda')
+		 .then(async response=>{
+			eval(await response.text())
+			eruda.init();
+			window.onerror= (message,file,line,character,object)=>{
+			 console.groupCollapsed("Error Details:",message)
+			 console.log("File:",file)
+			 console.log("Line:",line)
+			 console.log("Character:",character)
+			 console.log("Object:",object)
+			 console.groupEnd()
+			 eruda.show()
+			}
+		 })
 	 }
 	</script>
 	<meta name="theme-color" content="#4169e1"/>
@@ -50,11 +54,13 @@
  <script src="scripts/albumsScreen.js"></script>
  <script src="scripts/progressBar.js"></script>
  <script src="scripts/lyricsScreen.js"></script>
- <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
- <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
- <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-performance.js"></script>
- <script src="scripts/firebaseStart.js"></script>
+ <script src="/__/firebase/7.9.1/firebase-app.js"></script>
+ <script src="/__/firebase/7.9.1/firebase-analytics.js"></script>
+ <script src="/__/firebase/7.9.1/firebase-performance.js"></script>
+ <script src="/__/firebase/init.js"></script>
  <script>
+	firebase.performance();
+	firebase.analytics()
 	// Check that service workers are supported
 	if ('serviceWorker' in navigator) {
 	 // Use the window load event to keep the page load performant

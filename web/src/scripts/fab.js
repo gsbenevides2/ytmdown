@@ -9,7 +9,7 @@ const fab = new Vue({
 	 if(urlScreen.visible){
 		progressBar.visible = true
 		this.visible = false
-		fetch(`/album?url=${urlScreen.url}`)
+		api(`/album?url=${urlScreen.url}`)
 		 .then(async res=>{
 			this.video= await res.data
 			albumsScreen.albums = this.video.albumResults

@@ -5,6 +5,6 @@ function makeUrl(){
  else return 'https://ytmdown.herokuapp.com/'
 }
 
-fetch = axios.create({
+api = axios.create({
  baseURL:makeUrl()
 })

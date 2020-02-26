@@ -51,16 +51,16 @@ const loadingScreen = new Vue({
 	}
  },
  mounted(){
-	fetch("https://assets7.lottiefiles.com/temp/lf20_aiGIon.json")
+	api("https://assets7.lottiefiles.com/temp/lf20_aiGIon.json")
 	 .then(async response=>{
 		this.lottie.loading = response.data
 		this.$refs.lottie.load(this.lottie.loading)
 	 })
-	fetch("https://assets2.lottiefiles.com/datafiles/jXqHQIXI6oO6V47/data.json")
+	api("https://assets2.lottiefiles.com/datafiles/jXqHQIXI6oO6V47/data.json")
 	 .then(async response=>{
 		this.lottie.success =  response.data
 	 })
-	fetch("https://assets8.lottiefiles.com/packages/lf20_eKtxVc.json")
+	api("https://assets8.lottiefiles.com/packages/lf20_eKtxVc.json")
 	 .then(async response=>{
 		this.lottie.error =  response.data
 	 })

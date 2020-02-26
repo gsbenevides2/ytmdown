@@ -8,7 +8,7 @@ const albumsScreen = new Vue({
  methods:{
 	selectMusic(id){
 	 progressBar.visible = true
-	 fetch(`/music?id=${id}`)
+	 api(`/music?id=${id}`)
 		.then(async res=>{
 		 const music =  res.data
 		 albumsScreen.visible = false
@@ -24,7 +24,7 @@ const albumsScreen = new Vue({
 	search(e){
 	 e.target.blur()
 	 progressBar.visible = true
-	 fetch(`/album?url=${urlScreen.url}&searchTerm=${this.musicName}`)
+	 api(`/album?url=${urlScreen.url}&searchTerm=${this.musicName}`)
 		.then(async res=>{
 		 window.scrollTo(0,0);
 		 fab.video= res.data

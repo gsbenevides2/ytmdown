@@ -7,7 +7,7 @@ const albumScreen = new Vue({
  methods:{
 	next(){
 	 progressBar.visible = true
-	 fetch(`/lyrics?name=${this.music.name}&artist=${this.music.artist}`)
+	 api(`/lyrics?name=${this.music.name}&artist=${this.music.artist}`)
 		.then(async res=>{
 		 const {data} = res
 		 albumScreen.visible = false

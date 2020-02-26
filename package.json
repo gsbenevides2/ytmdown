@@ -48,7 +48,6 @@
 				"scripts/albumScreen.js",
 				"scripts/albumsScreen.js",
 				"scripts/fab.js",
-				"scripts/firebaseStart.js",
 				"scripts/loadingScreen.js",
 				"scripts/lyricsScreen.js",
 				"scripts/progressBar.js",
