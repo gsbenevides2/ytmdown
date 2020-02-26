@@ -26,8 +26,7 @@ const caramelPuppy = require("caramel-puppy")({
 })
 caramelPuppy.appStart()
 const http = require("http").Server(app)
-const io = require("socket.io")(http)
-io.origins(whitelist)
+const io = require("socket.io")(http,{origins:whitelist})
 const routes = require("./routes")
 const {
  DownloaderMusic,
