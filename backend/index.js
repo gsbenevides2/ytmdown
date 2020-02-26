@@ -5,7 +5,7 @@ const cors = require('cors')
 const whitelist = [
 'http://localhost:3000',
 'http://localhost:5000',
-'https://ytmdown.web.app/',
+'https://ytmdown.web.app',
 'https://ytmdown.firebaseapp.com',
 'https://ytmdown.herokuapp.com',
  undefined
