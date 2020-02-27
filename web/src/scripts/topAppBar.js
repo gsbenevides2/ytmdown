@@ -73,7 +73,7 @@ const topAppBar = new Vue({
 	<div class="mdc-top-app-bar__row">
 	 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
 		<button v-show="navigationIcon" @click="navigationClick" class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">{{navigationIcon}}</button>  
-		<span @click="home" class="mdc-top-app-bar__title">YouTube Music Downloader</span>
+		<h1 @click="home" class="mdc-top-app-bar__title">YouTube Music Downloader</h1>
 	 </section>
 	 <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
 		<button @click="toggleNotificationMode" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Download">{{notificationMode? 'notifications_active' :'notifications_off'}}</button>

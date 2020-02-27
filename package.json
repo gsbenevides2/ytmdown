@@ -18,9 +18,9 @@
 	},
 	"scripts": {
 		"start": "node backend/index.js",
-		"deploy-web": "minify-cli start && workbox generateSW workbox-config.js && firebase deploy --token $FIREBASE_TOKEN",
+		"deploy-web": "node webDeploy.js && minify-cli start && workbox generateSW workbox-config.js && firebase deploy --token $FIREBASE_TOKEN",
 		"back": "nodemon backend/index.js --config nodemon-back.json",
-		"web":"nodemon --exec 'minify-cli start &&  firebase serve' --config nodemon-web.json",
+		"web":"firebase serve",
 		"download-env": "heroku config -s -a ytmdown > .env"
 	},
 	"devDependencies": {
