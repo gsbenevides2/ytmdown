@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html lang='pt-br'>
  <head>
-	<script>
-	 if(window.location.hostname === "localhost"){
-		fetch('//cdn.jsdelivr.net/npm/eruda')
-		 .then(async response=>{
-			eval(await response.text())
-			eruda.init();
-			window.onerror= (message,file,line,character,object)=>{
-			 console.groupCollapsed("Error Details:",message)
-			 console.log("File:",file)
-			 console.log("Line:",line)
-			 console.log("Character:",character)
-			 console.log("Object:",object)
-			 console.groupEnd()
-			 eruda.show()
-			}
-		 })
-	 }
-	</script>
 	<meta name="theme-color" content="#4169e1"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="google-site-verification" content="UQiaYoZbGFSsZIFAJ_CXBgEM8mCDbK8RurAE9T9MHjE" />
@@ -43,6 +25,7 @@
 	<div id="selectDataScreen"></div>
 	<div id="fab"></div>
  </body>
+ <script src='scripts/eruda.js'></script>
  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
  <script src="/libraes/socket.io.js"></script>
  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
