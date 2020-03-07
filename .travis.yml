@@ -5,9 +5,12 @@ jobs:
  include:
   - stage: Deploy to Firebase
     script: "yarn deploy-web"
+    if: branch = master
   - stage: Deploy to Heroku
     script: skip
+    if: branch = master
     deploy:
      provider: heroku
      api_key: "$HEROKU_KEY"
+ 
 
