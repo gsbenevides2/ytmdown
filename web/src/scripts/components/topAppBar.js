@@ -1,7 +1,7 @@
 const topAppBar = new Vue({
  el:"#topAppBar",
  data:{
-	navigationIcon:"",
+	navigationIcon:"menu",
 	darkMode:false,
 	notificationMode:false
  },
@@ -15,7 +15,7 @@ const topAppBar = new Vue({
 		 albumsScreen.visible = false
 		 urlScreen.visible = true
 		 fab.visible = true
-		 this.navigationIcon = ""
+		 this.navigationIcon = "menu"
 		}
 		else if(albumScreen.visible){
 		 albumScreen.visible = false
@@ -32,10 +32,13 @@ const topAppBar = new Vue({
 		 loadingScreen.$refs.lottie.load(loadingScreen.lottie.loading)
 		 loadingScreen.$refs.lottie.loop = true	
 		 urlScreen.visible = true
-		 this.navigationIcon = ""
+		 this.navigationIcon = "menu"
 		 fab.visible = true
 
 		}
+	 }
+	 else if(this.navigationIcon === "menu"){
+		menu.mdc.open = true
 	 }
 	},
 	toggleDarkMode(){
@@ -62,6 +65,7 @@ const topAppBar = new Vue({
 	}
  },
  mounted(){
+	document.querySelector('.load-initial').style.display = 'none'
 	if(localStorage.getItem("darkMode") === "true") this.toggleDarkMode()
 	document.querySelectorAll(".mdc-top-app-bar buttons")
 	 .forEach(el=>{

@@ -20,7 +20,7 @@
 		"start": "node backend/index.js",
 		"deploy-web": "node webDeploy.js && minify-cli start && workbox generateSW workbox-config.js && firebase deploy --token $FIREBASE_TOKEN",
 		"back": "nodemon backend/index.js --config nodemon-back.json",
-		"web":"firebase serve",
+		"web": "firebase serve",
 		"download-env": "heroku config -s -a ytmdown > .env"
 	},
 	"devDependencies": {
@@ -44,7 +44,6 @@
 				"styles/style.css"
 			],
 			"js": [
-				"libraes/vue.js",
 				"scripts/albumScreen.js",
 				"scripts/albumsScreen.js",
 				"scripts/fab.js",
@@ -52,7 +51,9 @@
 				"scripts/lyricsScreen.js",
 				"scripts/progressBar.js",
 				"scripts/topAppBar.js",
-				"scripts/urlScreen.js"
+				"scripts/urlScreen.js",
+				"scripts/eruda.js",
+				"scripts/makeApi.js"
 			]
 		}
 	}

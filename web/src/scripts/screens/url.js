@@ -1,5 +1,5 @@
 const urlScreen = new Vue({
- el:"#urlScreen",
+ el:".screens #url",
  data:{
 	visible:true,
 	url:null,

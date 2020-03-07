@@ -1,5 +1,5 @@
 const loadingScreen = new Vue({
- el:"#loadingScreen",
+ el:".screens #loading",
  data:{
 	visible:false,
 	loadingText:"Carregando",
