@@ -9,6 +9,7 @@
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"ffmpeg-on-progress": "^1.0.0",
+		"firebase-admin": "^8.9.2",
 		"fluent-ffmpeg": "^2.1.2",
 		"node-id3": "^0.1.11",
 		"request": "^2.88.0",
