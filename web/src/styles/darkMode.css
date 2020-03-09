@@ -42,15 +42,16 @@ body.dark{
 .dark .mdc-drawer__content{
  background-color:rgba(255,255,255,.16);
 }
-.dark .mdc-drawer .mdc-list-item{
+/*Lists*/
+.dark .mdc-list-item{
  color:rgba(255,255,255,.87);
 }
-.dark .mdc-drawer .mdc-list-item__graphic{
+.dark .mdc-list-item__graphic{
  color:rgba(255,255,255,.6);
 }
-.dark .mdc-drawer .mdc-list-item--activated{
+.dark .mdc-list-item--activated{
  color:rgba(65,105,255,.87);
 }
-.dark .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{
+.dark .mdc-list-item--activated .mdc-list-item__graphic{
  color:rgba(65,105,255,.6);
 }

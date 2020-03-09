@@ -1,6 +1,7 @@
 const {Router} = require("express")
 
 const AlbumController = require("./controllers/album")
+const IframeController = require("./controllers/iframe")
 const MusicController = require("./controllers/music")
 const LyricsController = require("./controllers/lyrics")
 const {getMusicFile}= require("./musicDownloader")
@@ -14,11 +15,12 @@ routes.get("/music/:id.mp3",
  (request,response)=>{
 	const {id} = request.params
 	const stream = getMusicFile(id)
-	response.sendFile(stream.path)
+	response.download(stream.path)
  }
 )
 
 routes.get("/album",AlbumController.index)
+routes.get("/iframe",IframeController.index)
 routes.get("/music",MusicController.index)
 routes.get("/lyrics",LyricsController.index)
 

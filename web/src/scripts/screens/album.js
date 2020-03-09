@@ -29,7 +29,7 @@ const albumScreen = new Vue({
 	document.querySelectorAll(".mdc-text-field").forEach(mdc.textField.MDCTextField.attachTo)
  },
  template:`
- <div v-show="visible" class="mdc-card mdc-card--outlined screen">
+ <div v-show="visible" id='screen-album' class="mdc-card mdc-card--outlined screen">
 	<div class="mdc-card__primary-action">
 	 <div class="mdc-card__media mdc-card__media--square" v-bind:style="{backgroundImage:'url(&quot;'+music.cover+'&quot;)'}"></div>
 	 <div style="padding:12px;">

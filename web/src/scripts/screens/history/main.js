@@ -1,7 +1,15 @@
-const history = new Vue({
+const historyScreen = new Vue({
  el:'.screens #history',
  data:{
 	history:null,
+	visible:true,
+ },
+ methods:{
+	open(musicData){
+	 topAppBar.navigationIcon = "arrow_back"
+	 this.visible =false
+	 musicScreen.open(musicData)
+	}
  },
  mounted(){
 	firebase.auth().onAuthStateChanged(user=>{
@@ -9,22 +17,23 @@ const history = new Vue({
 	 else {
 		firebase.firestore().collection(`users/${user.uid}/history`).get()
 		 .then(collectionSnapshot=>{
+			document.querySelector('.load-initial').style.display = 'none'
 			this.history = collectionSnapshot.docs.map(doc=>{return{
 			 id:doc.id,
-				...doc.data()
+			 ...doc.data()
 			}})
 		 })
-		.catch(console.error)
+		 .catch(console.error)
 	 }
 	})
  },
  template:`
- <div id='screen-history'>
+ <div v-if='visible' id='screen-history'>
 	<div v-for="music in history" class="mdc-card">
-	 <div class="mdc-card__primary-action">
+	 <div class="mdc-card__primary-action" @click='open(music)'>
 	 <div class="mdc-card__media mdc-card__media--square" v-bind:style="{backgroundImage:'url(&quot;'+music.cover+'&quot;)'}"></div>
-		<h1>{{music.name}}</h1>
-		<h4>{{music.album}}-{{music.artist}}</h4>
+		<span class='mdc-typography--subtitle1'>{{music.name}}</span>
+		<span class='mdc-typography--body2'>{{music.album}}-{{music.artist}}</span>
 	 </div>
 	</div>
 	<div class='empty' v-if='history && history.length===0'>

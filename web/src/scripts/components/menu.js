@@ -33,7 +33,7 @@ const menu = new Vue({
 		break
 	}
 	mdc.list.MDCList.attachTo(
-	 document.querySelector('.mdc-list')
+	 document.querySelector('.mdc-drawer .mdc-list')
 	).wrapFocus=true
 	this.mdc = mdc.drawer.MDCDrawer.attachTo(
 	 document.querySelector('.mdc-drawer')
@@ -47,19 +47,19 @@ const menu = new Vue({
 		class="mdc-list-item"
 		v-bind:class="{'mdc-list-item--activated':atual==='dash'}">
 		 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">music_note</i>
-		 <span class="mdc-list-item__text">Baixar</span>
+		 <span class="mdc-list-item__text">baixar</span>
 		</a>
 		<a @click="to('hist')"
 		class="mdc-list-item"
 		v-bind:class="{'mdc-list-item--activated':atual==='hist'}">
 		 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">history</i>
-		 <span class="mdc-list-item__text">Historico</span>
+		 <span class="mdc-list-item__text">historico</span>
 		</a>
 		<a @click="to('sett')"
 		class="mdc-list-item"
 		v-bind:class="{'mdc-list-item--activated':atual==='sett'}">
 		 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
-		 <span class="mdc-list-item__text">Configurações</span>
+		 <span class="mdc-list-item__text">configurações</span>
 		</a>
 	 </nav>
 	</div>

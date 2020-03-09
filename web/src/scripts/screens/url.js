@@ -28,8 +28,9 @@ const urlScreen = new Vue({
 	}
  },
  mounted(){
+	document.querySelector('.load-initial').style.display = 'none'
 	const url = new URL(window.location.href)
-  if(url.searchParams.has("text")){
+	if(url.searchParams.has("text")){
 	 this.url = url.searchParams.get("text")
 	}
 	this.mdcInput = new mdc.textField.MDCTextField(this.$refs.urlInputContainer)
@@ -50,7 +51,7 @@ const urlScreen = new Vue({
 	 <button @click="copyFromClipboard" style="display:inline" class="mdc-icon-button material-icons">content_paste</button>
 	</div>
 	<p class='to-about'>
-	  <a href='/about'>Saiba Mais</a>
+		<a href='/about'>Saiba Mais</a>
 	</p>
  </div>
  `
