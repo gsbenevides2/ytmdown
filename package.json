@@ -16,15 +16,14 @@
 	"devDependencies": {
 		"firebase-tools": "^7.13.1",
 		"minify-cli": "^1.0.0",
-		"nodemon": "^2.0.2",
-		"workbox-cli": "^4.3.1"
+		"nodemon": "^2.0.2"
 	},
 	"license": "MIT",
 	"main": "index.js",
 	"name": "YTMusic",
 	"scripts": {
 		"back": "nodemon backend/index.js --config nodemon-back.json",
-		"deploy-web": "node webDeploy.js && minify-cli start && workbox generateSW workbox-config.js && firebase deploy --token $FIREBASE_TOKEN",
+		"deploy-web": "minify-cli start && node webDeploy.js && firebase deploy --token $FIREBASE_TOKEN",
 		"download-env": "heroku config -s -a ytmdown > .env",
 		"start": "node backend/index.js",
 		"web": "firebase serve"
