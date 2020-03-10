@@ -123,14 +123,11 @@ a,a:link,a:hover,a:visited,a:active{
 }
 #screen-settings img{
  width:125px;
+ height:125px;
  border-radius:50%;
  vertical-align: text-top;
 }
-#screen-settings .mdc-layout-grid__cell--span-4{
- display:flex;
-}
 #screen-settings .user-info{
- width: calc(100% - 130px);
- margin-left:5px;
+ margin-left:15px;
 }
 

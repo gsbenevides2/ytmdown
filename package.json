@@ -1,6 +1,7 @@
 {
 	"name": "YTMusic",
-	"version": "1.0.0",
+	"version": "3.0.0",
+	"webVersion":"3.0.0",
 	"main": "index.js",
 	"license": "MIT",
 	"dependencies": {

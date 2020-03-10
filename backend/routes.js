@@ -4,6 +4,7 @@ const AlbumController = require("./controllers/album")
 const IframeController = require("./controllers/iframe")
 const MusicController = require("./controllers/music")
 const LyricsController = require("./controllers/lyrics")
+const VersionController = require("./controllers/version")
 const {getMusicFile}= require("./musicDownloader")
 
 const routes = Router()
@@ -22,6 +23,8 @@ routes.get("/music/:id.mp3",
 routes.get("/album",AlbumController.index)
 routes.get("/iframe",IframeController.index)
 routes.get("/music",MusicController.index)
+routes.get("/lyrics",LyricsController.index)
+routes.get("/version",VersionController.index)
 routes.get("/lyrics",LyricsController.index)
 
 module.exports = routes
