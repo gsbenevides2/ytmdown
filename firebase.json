@@ -1,11 +1,31 @@
 {
-    "hosting": {
-        "public": "web/src",
-        "cleanUrls": true,
-        "ignore": [
-            "firebase.json",
-            "**/.*",
-            "**/node_modules/**"
-        ]
-    }
+ "hosting": {
+	"public": "web/src",
+	"cleanUrls": true,
+	"headers": [
+	 {
+		"headers": [
+		 {
+			"key": "Cache-Control",
+			"value": "max-age=31557600"
+		 }
+		],
+		"source": "**/*.@(html|css|js)"
+	 },
+	 {
+		"headers": [
+		 {
+			"key": "Cache-Control",
+			"value": "max-age=3600"
+		 }
+		],
+		"source": "manifest.json"
+	 }
+	],
+	"ignore": [
+	 "firebase.json",
+	 "**/.*",
+	 "**/node_modules/**"
+	]
+ }
 }

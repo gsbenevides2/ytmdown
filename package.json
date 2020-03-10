@@ -29,7 +29,7 @@
 		"web": "firebase serve"
 	},
 	"version": "3.0.0",
-	"webVersion": "3.0.0",
+	"webVersion": "3.0.1",
 	"minify-cli": {
 		"src": "web/src",
 		"dest": "web/public",
