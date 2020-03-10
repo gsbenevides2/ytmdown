@@ -1,9 +1,4 @@
 {
-	"name": "YTMusic",
-	"version": "3.0.0",
-	"webVersion": "3.0.0",
-	"main": "index.js",
-	"license": "MIT",
 	"dependencies": {
 		"caramel-puppy": "^1.0.0",
 		"cors": "^2.8.5",
@@ -18,52 +13,35 @@
 		"socket.io": "^2.3.0",
 		"ytdl-core": "^1.0.3"
 	},
-	"scripts": {
-		"start": "node backend/index.js",
-		"deploy-web": "node webDeploy.js && minify-cli start && workbox generateSW workbox-config.js && firebase deploy --token $FIREBASE_TOKEN",
-		"back": "nodemon backend/index.js --config nodemon-back.json",
-		"web": "firebase serve",
-		"download-env": "heroku config -s -a ytmdown > .env"
-	},
 	"devDependencies": {
 		"firebase-tools": "^7.13.1",
 		"minify-cli": "^1.0.0",
 		"nodemon": "^2.0.2",
 		"workbox-cli": "^4.3.1"
 	},
+	"license": "MIT",
+	"main": "index.js",
+	"name": "YTMusic",
+	"scripts": {
+		"back": "nodemon backend/index.js --config nodemon-back.json",
+		"deploy-web": "node webDeploy.js && minify-cli start && workbox generateSW workbox-config.js && firebase deploy --token $FIREBASE_TOKEN",
+		"download-env": "heroku config -s -a ytmdown > .env",
+		"start": "node backend/index.js",
+		"web": "firebase serve"
+	},
+	"version": "3.0.0",
+	"webVersion": "3.0.0",
 	"minify-cli": {
 		"src": "web/src",
 		"dest": "web/public",
 		"copyAll": true,
 		"files": {
-			"html": [
-				"about.html",
-				"index.html",
-				"history.html",
-				"login.html",
-				"settings.html"
-			],
-			"css": [
-				"libraes/mdc.css",
-				"styles/darkMode.css",
-				"styles/style.css",
-				"libraes/mdc.min.css"
-			],
 			"js": [
-				"scripts/albumScreen.js",
-				"scripts/albumsScreen.js",
-				"scripts/fab.js",
-				"scripts/loadingScreen.js",
-				"scripts/lyricsScreen.js",
-				"scripts/progressBar.js",
-				"scripts/topAppBar.js",
-				"scripts/urlScreen.js",
-				"scripts/eruda.js",
-				"scripts/makeApi.js",
-				"scripts/components/fab.js",
 				"scripts/components/menu.js",
 				"scripts/components/progressBar.js",
 				"scripts/components/topAppBar.js",
+				"scripts/eruda.js",
+				"scripts/makeApi.js",
 				"scripts/screens/album.js",
 				"scripts/screens/albums.js",
 				"scripts/screens/history/main.js",
@@ -73,6 +51,17 @@
 				"scripts/screens/lyrics.js",
 				"scripts/screens/settings.js",
 				"scripts/screens/url.js"
+			],
+			"css": [
+				"styles/darkMode.css",
+				"styles/style.css"
+			],
+			"html": [
+				"about.html",
+				"history.html",
+				"index.html",
+				"login.html",
+				"settings.html"
 			]
 		}
 	}
