@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+ <head>
+	<meta name="theme-color" content="#4169e1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-site-verification" content="UQiaYoZbGFSsZIFAJ_CXBgEM8mCDbK8RurAE9T9MHjE" />
+	<meta name='description' content='Download de músicas do YouTube'/>
+	<meta name='keywords' content='Download de Músicas, Baixar Músicas,YouTube,Músicas'/>
+	<link rel="manifest" href="/manifest.json"/>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
+	<link href="libraes/mdc.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="./styles/style.css"/>
+	<link rel="stylesheet" href="./styles/darkMode.css">
+	<title>Youtube Music Downloader</title>
+	<style>
+	*{
+	 text-align: center;
+	}
+	.dark .mdl-button{
+	 background-color:rgb(56,56,56) !important;
+	}
+	.dark .firebaseui-idp-text{
+	 color:white !important;
+	}
+	</style>
+ </head>
+ <body class="mdc-typography">
+	<h2>Seja bem-vindo</h2>
+	<p>Com uma conta você poderá salvar seu histórico de músicas e depois baixa-lo novamente.</p>
+	<div id="firebaseui-auth-container"></div>
+ </body>
+ <script src='scripts/eruda.js'></script>
+
+ <script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth__pt_br.js"></script>
+ <script src="/__/firebase/7.9.1/firebase-app.js"></script>
+ <script src="/__/firebase/7.9.1/firebase-auth.js"></script>
+ <script src="/__/firebase/init.js"></script>
+
+ <script src="scripts/screens/login.js"></script>
+</html>

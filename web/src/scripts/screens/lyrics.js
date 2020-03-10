@@ -1,5 +1,5 @@
 const lyricsScreen = new Vue({
- el:"#lyricsScreen",
+ el:".screens #lyrics",
  data:{
 	visible:false,
 	lyrics:null,

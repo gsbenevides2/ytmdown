@@ -21,21 +21,14 @@
 	<div id="topAppBar"></div>
 	<div id="menu"></div>
 	<div id="progressBar"></div>
-	<div class="screens">
-	 <div id="url"></div>
-	 <div id="albums"></div>
-	 <div id="album"></div>
-	 <div id="lyrics"></div>
-	 <div id="loading"></div>
-	 <div id="history"></div>
-	</div>
-	<div id="fab"></div>
+	<div class="screen"></div>
  </body>
  <script src='scripts/eruda.js'></script>
 
  <script src="/__/firebase/7.9.1/firebase-app.js"></script>
  <script src="/__/firebase/7.9.1/firebase-analytics.js"></script>
  <script src="/__/firebase/7.9.1/firebase-auth.js"></script>
+ <script src="/__/firebase/7.9.1/firebase-firestore.js"></script>
  <script src="/__/firebase/7.9.1/firebase-performance.js"></script>
  <script src="/__/firebase/init.js"></script>
 
@@ -50,13 +43,8 @@
  <script src="scripts/components/topAppBar.js"></script>
  <script src="scripts/components/progressBar.js"></script>
  <script src="scripts/components/menu.js"></script>
- <script src="scripts/components/fab.js"></script>
 
- <script src="scripts/screens/loading.js"></script>
- <script src="scripts/screens/url.js"></script>
- <script src="scripts/screens/album.js"></script>
- <script src="scripts/screens/albums.js"></script>
- <script src="scripts/screens/lyrics.js"></script>
+ <script src="scripts/screens/settings.js"></script>
  <script>
 	firebase.performance();
 	firebase.analytics()

@@ -1,41 +1,66 @@
 const topAppBar = new Vue({
  el:"#topAppBar",
  data:{
-	navigationIcon:"",
+	navigationIcon:"menu",
 	darkMode:false,
 	notificationMode:false
  },
  methods:{
 	navigationClick(){
 	 if(this.navigationIcon === "arrow_back"){
-		if(progressBar.visible){
-		 alert("Aguarde o termino do processo")
+		if(window.location.pathname==='/'){
+
+		 if(progressBar.visible){
+			alert("Aguarde o termino do processo")
+		 }
+		 else if(albumsScreen.visible){
+			albumsScreen.visible = false
+			urlScreen.visible = true
+			fab.visible = true
+			this.navigationIcon = "menu"
+		 }
+		 else if(albumScreen.visible){
+			albumScreen.visible = false
+			albumsScreen.visible = true
+		 }
+		 else if(lyricsScreen.visible){
+			lyricsScreen.visible = false
+			albumScreen.visible= true
+		 }
+		 else if(loadingScreen.visible){
+			loadingScreen.visible = false
+			loadingScreen.downloadUrl = null
+			loadingScreen.loadingText = "Carregando"
+			loadingScreen.$refs.lottie.load(loadingScreen.lottie.loading)
+			loadingScreen.$refs.lottie.loop = true	
+			urlScreen.visible = true
+			this.navigationIcon = "menu"
+			fab.visible = true
+		 }
 		}
-		else if(albumsScreen.visible){
-		 albumsScreen.visible = false
-		 urlScreen.visible = true
-		 fab.visible = true
-		 this.navigationIcon = ""
-		}
-		else if(albumScreen.visible){
-		 albumScreen.visible = false
-		 albumsScreen.visible = true
-		}
-		else if(lyricsScreen.visible){
-		 lyricsScreen.visible = false
-		 albumScreen.visible= true
-		}
-		else if(loadingScreen.visible){
-		 loadingScreen.visible = false
-		 loadingScreen.downloadUrl = null
-		 loadingScreen.loadingText = "Carregando"
-		 loadingScreen.$refs.lottie.load(loadingScreen.lottie.loading)
-		 loadingScreen.$refs.lottie.loop = true	
-		 urlScreen.visible = true
-		 this.navigationIcon = ""
-		 fab.visible = true
+		else if(window.location.pathname === '/history'){
+		 if(progressBar.visible){
+			alert("Aguarde o termino do processo")
+		 }
+		 else if(musicScreen.visible){
+			this.navigationIcon = "menu"
+			musicScreen.visible = false
+			historyScreen.visible = true
+		 }
+		 else if(loadingScreen.visible){
+			loadingScreen.visible = false
+			loadingScreen.downloadUrl = null
+			loadingScreen.loadingText = "Carregando"
+			loadingScreen.$refs.lottie.load(loadingScreen.lottie.loading)
+			loadingScreen.$refs.lottie.loop = true	
+			historyScreen.visible = true
+			this.navigationIcon = "menu"
+		 }
 
 		}
+	 }
+	 else if(this.navigationIcon === "menu"){
+		menu.mdc.open = true
 	 }
 	},
 	toggleDarkMode(){

@@ -1,5 +1,5 @@
 const albumsScreen = new Vue({
- el:"#albumsScreen",
+ el:".screens #albums",
  data:{
 	visible:false,
 	musicName:"",

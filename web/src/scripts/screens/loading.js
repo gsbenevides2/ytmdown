@@ -1,5 +1,6 @@
+firebase.auth()
 const loadingScreen = new Vue({
- el:"#loadingScreen",
+ el:".screens #loading",
  data:{
 	visible:false,
 	loadingText:"Carregando",
@@ -8,14 +9,26 @@ const loadingScreen = new Vue({
 	lottie:{}
  },
  methods:{
-	downloadStart(musicData){
+	async downloadStart(musicData){
 	 this.musicData = musicData
-		this.$refs.lottie.load(this.lottie.loading)
+	 this.$refs.lottie.load(this.lottie.loading)
 	 this.error = false
 	 this.socket = io(makeUrl());
 	 progressBar.visible = true
 	 this.visible = true
-	 this.socket.emit("downloadMusic",musicData)
+	 if(firebase.auth().currentUser){
+		firebase.auth().currentUser.getIdToken(false)
+		 .then(authToken=>{
+			this.socket.emit("downloadMusic",{musicData,authToken})
+		 })
+		 .catch(e=>{
+			console.error(e)
+			this.socket.emit("downloadMusic",{musicData})
+		 })
+	 }
+	 else {
+		this.socket.emit("downloadMusic",{musicData})
+	 }
 	 this.socket.on("event",eventData=>{
 		this.event(eventData)
 	 })
