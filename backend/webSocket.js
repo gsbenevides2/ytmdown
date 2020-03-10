@@ -3,25 +3,26 @@ const admin = require("firebase-admin");
 const {DownloaderMusic}= require("./musicDownloader")
 
 const {
- project_id,
- private_key_id,
- private_key,
- client_email,
- client_id,
+ PROJECT_ID,
+ PRIVATE_KEY_ID,
+ PRIVATE_KEY,
+ CLIENT_EMAIL,
+ CLIENT_ID,
 } = process.env;
 
 admin.initializeApp({
  credential: 
  admin.credential.cert({
 	type:'service_account',
-	client_id,
-	project_id,
-	client_email,
-	private_key_id,	
-	private_key:private_key.replace(/\\n/g, '\n'),
+	client_id:CLIENT_ID,
+	project_id:PROJECT_ID,
+	client_email:CLIENT_EMAIL,
+	private_key_id:PRIVATE_KEY_ID,	
+	private_key:`-----BEGIN PRIVATE KEY-----\n${PRIVATE_KEY.replace(/\\n/g, '\n')}\n-----END PRIVATE KEY-----\n
+`,
 	client_x509_cert_url:'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-w42xw%40ytmdown.iam.gserviceaccount.com'
  }),
- databaseURL: `https://${project_id}.firebaseio.com`
+ databaseURL: `https://${PROJECT_ID}.firebaseio.com`
 });
 
 module.exports = socket=>{
