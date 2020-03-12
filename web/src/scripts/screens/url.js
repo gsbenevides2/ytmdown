@@ -22,7 +22,7 @@ const urlScreen = new Vue({
 		 this.mdcInput.focus()
 		})
 		.catch(error=>{
-		 alert("Ocorreu um erro")
+		 snackbar.open("Ocorreu um erro")
 		 console.error(error)
 		})
 	}

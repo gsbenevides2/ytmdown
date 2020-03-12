@@ -18,7 +18,7 @@ const albumsScreen = new Vue({
 		})
 		.catch(error=>{
 		 progressBar.visible = false
-		 alert(`Ocorreu um erro:${error.request.responseText||error.message}`)
+		 snackbar.open(`Ocorreu um erro:${error.request.responseText||error.message}`)
 		})
 	},
 	search(e){
@@ -33,7 +33,7 @@ const albumsScreen = new Vue({
 		})
 		.catch(error=>{
 		 progressBar.visible = false
-		 alert(error.request.responseText||error.message)
+		 snackbar.open(error.request.responseText||error.message)
 		})
 	}
  },

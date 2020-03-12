@@ -18,7 +18,7 @@ const albumScreen = new Vue({
 		})
 		.catch(error=>{
 		 progressBar.visible = false
-		 alert(`Ocorreu um erro:${error.request.responseText||error.message}`)
+		 snackbar.open(`Ocorreu um erro:${error.request.responseText||error.message}`)
 		})
 	},
  },
