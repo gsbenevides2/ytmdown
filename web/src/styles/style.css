@@ -32,9 +32,6 @@ body{
  display:inline-block;
  width:100%;
 }
-.lyrics .translation{
- background-color:rgba(0,0,0,.2);
-}
 .to-about{
  text-align:center;
 }
