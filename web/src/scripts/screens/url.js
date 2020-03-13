@@ -34,6 +34,7 @@ const urlScreen = new Vue({
 	 this.url = url.searchParams.get("text")
 	}
 	this.mdcInput = new mdc.textField.MDCTextField(this.$refs.urlInputContainer)
+	api.get('/version')
  },
  template:`
  <div v-show="visible" class="screen">
