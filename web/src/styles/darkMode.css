@@ -55,3 +55,10 @@ body.dark{
 .dark .mdc-list-item--activated .mdc-list-item__graphic{
  color:rgba(65,105,255,.6);
 }
+/*Tab-Bar*/
+.dark .mdc-tab:not(.mdc-tab--active) .mdc-tab__icon{
+ color:rgba(255,255,255,.54);
+}
+.dark .mdc-tab:not(.mdc-tab--active) .mdc-tab__text-label{
+ color:rgba(255,255,255,.6);
+}i

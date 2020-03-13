@@ -32,10 +32,7 @@ const lyricsScreen = new Vue({
  },
  template:`
  <div v-show="visible" class="screen">
- <span class="lyrics" v-for="(lyric,index) in lyrics">
-	<span class="original">{{lyric}}</span>
-	<span v-if="translation" class="translation">{{translation[index]}}</span>
- </span>
+ <lyrics-view v-bind:show='0'  v-bind:lyrics='lyrics' v-bind:translation='translation'></lyrics-view>
  <button @click="next(true,true)" class="mdc-button" style="width:100%" v-if="translation">Continuar com letra e tradução</button>
  <button @click="next(false,true)" class="mdc-button" style="width:100%">Continuar somente com a letra</button>
  <button @click="next(false,false)" class="mdc-button" style="width:100%">Continuar sem a letra</button>

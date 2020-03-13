@@ -26,7 +26,7 @@ function startFirebaseUi(){
 }
 firebase.auth().onAuthStateChanged(user=>{
  if(user){
-	alert(`Seja bem vindo ${user.displayName}`)
+	snackbar.open(`Seja bem vindo ${user.displayName}`)
 	const sendTo = (new URL(window.location.href)).searchParams.get('sendTo')
 	
 	window.location.href = `/${sendTo}`

@@ -16,12 +16,12 @@ const settingsScreen = new Vue({
 		 Promise.all(promises)
 			.then(()=>{
 			 progressBar.visible = false
-			 alert('Historico deletado com sucesso')
+			 snackbar.open('Historico deletado com sucesso')
 			})
 			.catch(e=>{
 			 progressBar.visible = false
 			 console.error(e)
-			 alert('Occoreu um erro desconhecido')
+			 snackbar.open('Occoreu um erro desconhecido')
 			})
 		})
 	},

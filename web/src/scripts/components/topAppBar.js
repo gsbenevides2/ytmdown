@@ -11,7 +11,7 @@ const topAppBar = new Vue({
 		if(window.location.pathname==='/'){
 
 		 if(progressBar.visible){
-			alert("Aguarde o termino do processo")
+			snackbar.open("Aguarde o termino do processo")
 		 }
 		 else if(albumsScreen.visible){
 			albumsScreen.visible = false
@@ -40,7 +40,7 @@ const topAppBar = new Vue({
 		}
 		else if(window.location.pathname === '/history'){
 		 if(progressBar.visible){
-			alert("Aguarde o termino do processo")
+			snackbar.open("Aguarde o termino do processo")
 		 }
 		 else if(musicScreen.visible){
 			this.navigationIcon = "menu"
@@ -77,7 +77,7 @@ const topAppBar = new Vue({
 		 .requestPermission()
 		 .then(()=>{
 			this.notificationMode = true
-			alert("Agora quando o dowmload for concluido você recebera um notificação")
+			snackbar.open("Agora quando o dowmload for concluido você recebera um notificação")
 		 })
 		 .catch()
 	 }
