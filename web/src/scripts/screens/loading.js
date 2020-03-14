@@ -16,19 +16,20 @@ const loadingScreen = new Vue({
 	 this.socket = io(makeUrl());
 	 progressBar.visible = true
 	 this.visible = true
+	 const data = {musicData}
 	 if(firebase.auth().currentUser){
-		firebase.auth().currentUser.getIdToken(false)
-		 .then(authToken=>{
-			this.socket.emit("downloadMusic",{musicData,authToken})
-		 })
-		 .catch(e=>{
-			console.error(e)
-			this.socket.emit("downloadMusic",{musicData})
-		 })
+		try{
+		 const authToken = await firebase.auth().currentUser.getIdToken(false)
+		 data.authToken = authToken
+		}
+		catch(e){
+		 console.error(e)
+		}
 	 }
-	 else {
-		this.socket.emit("downloadMusic",{musicData})
+	 if(topAppBar.notificationMode){
+		data.messagingToken = topAppBar.messagingToken
 	 }
+	 this.socket.emit("downloadMusic",data)
 	 this.socket.on("event",eventData=>{
 		this.event(eventData)
 	 })
@@ -38,15 +39,6 @@ const loadingScreen = new Vue({
 		this.loadingText=data.message
 	 }
 	 else if(data.type === "Success"){
-		if(topAppBar.notificationMode){
-		 navigator.serviceWorker
-			.getRegistration()
-			.then(registration=>{
-			 registration.showNotification("Download Concluido",{
-				icon:'/icons/icon-128x128.png'
-			 })
-			})
-		}
 		progressBar.visible = false
 		this.$refs.lottie.load(this.lottie.success)
 		this.$refs.lottie.loop=false
@@ -80,13 +72,13 @@ const loadingScreen = new Vue({
 
  },
  template:`
- <div v-show="visible" style="text-align:center">
+	<div v-show="visible" style="text-align:center">
 	<lottie-player
-		ref="lottie"
-		background="transparent"
-		speed="1"
-		style="width:300px;height:300px;display:inline-block;"
-		loop autoplay>
+	ref="lottie"
+	background="transparent"
+	speed="1"
+	style="width:300px;height:300px;display:inline-block;"
+	loop autoplay>
 	</lottie-player>
 	<p>{{loadingText}}</p>
 	<a download v-bind:href="downloadUrl" class="mdc-button" v-show="downloadUrl">Baixar musica</a>
