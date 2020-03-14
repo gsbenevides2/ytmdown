@@ -3,7 +3,8 @@ const albumsScreen = new Vue({
  data:{
 	visible:false,
 	musicName:"",
-	albums:[]
+	albums:[],
+	next:null
  },
  methods:{
 	selectMusic(id){
@@ -28,6 +29,7 @@ const albumsScreen = new Vue({
 		.then(async res=>{
 		 window.scrollTo(0,0);
 		 fab.video= res.data
+		 this.next = fab.video.next
 		 this.albums = fab.video.albumResults
 		 progressBar.visible = false
 		})
@@ -35,6 +37,15 @@ const albumsScreen = new Vue({
 		 progressBar.visible = false
 		 snackbar.open(error.request.responseText||error.message)
 		})
+	},
+	more(){
+	 api(this.next)
+		.then(res=>{
+		 console.log(res.data)
+		 this.next = res.data.next
+		 this.albums = this.albums.concat(res.data.albums)
+		})
+	 .catch(console.error)
 	}
  },
  mounted(){
@@ -53,6 +64,7 @@ const albumsScreen = new Vue({
 		 </div>
 		</li>
 	 </ul>
+	 <button @click='more' style='width:100%' v-if="next" class="mdc-button">Mais Resultados</button>
 	 <div>
 		<h4 v-show="albums.length !== 0" class="mdc-typography--headline6">Ops não encontrou o que procura? Tente pela busca manual:</h4>
 		<h4 v-show="albums.length === 0" class="mdc-typography--headline6">Ops não consegui encontrar automaticamente, tente digitar algo:</h4>
