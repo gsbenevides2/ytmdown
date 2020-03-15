@@ -1,8 +1,7 @@
 if ('serviceWorker' in navigator) {
  window.addEventListener('load', () => {
-	if(window.location.hostname !== "localhost"){
-	 navigator.serviceWorker.register('/sw.js');
-	}
+	navigator.serviceWorker.register('/sw.js')
+	 .then(regist=>firebase.messaging().useServiceWorker(regist))
  });
 }
 

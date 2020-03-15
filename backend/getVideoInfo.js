@@ -29,7 +29,25 @@ function generateSearchTerm(videoId){
 		const thirdRow = lines[2] || ""
 		const [name,artist] = thirdRow.split(" · ")
 		if(artist) resolve(`${name} - ${artist}`)
-		else resolve(title)
+		else {
+		 const standards = [
+			/\(((.)+)?\)/gm, //Rmmove ()
+			/\[((.)+)?\]/gm, //Remove []
+			/\#([a-zA-Z]+)/gm, //Remove #
+			'Oficial',
+			'OFICIAL',
+			'Official MV',
+			'Official',
+			'OFFICIAL',
+			'"',
+			"'"
+		 ]
+		 let sanitizedTitle = title
+		 standards.map(standard=>{
+			sanitizedTitle = sanitizedTitle.replace(standard,"")
+		 })
+		 resolve(sanitizedTitle)
+		}
 	 }
 	 else reject("Video Invalido")
 	})

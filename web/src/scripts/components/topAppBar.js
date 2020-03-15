@@ -3,6 +3,7 @@ const topAppBar = new Vue({
  data:{
 	navigationIcon:"menu",
 	darkMode:false,
+	messagingToken:null,
 	notificationMode:false
  },
  methods:{
@@ -76,8 +77,13 @@ const topAppBar = new Vue({
 		Notification
 		 .requestPermission()
 		 .then(()=>{
-			this.notificationMode = true
-			snackbar.open("Agora quando o dowmload for concluido você recebera um notificação")
+			firebase.messaging()
+			 .getToken()
+			 .then(messagingToken=>{
+				this.messagingToken = messagingToken
+				this.notificationMode = true
+				snackbar.open("Agora quando o dowmload for concluido você recebera um notificação")
+			 })
 		 })
 		 .catch()
 	 }

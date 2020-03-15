@@ -5,6 +5,7 @@ const IframeController = require("./controllers/iframe")
 const MusicController = require("./controllers/music")
 const LyricsController = require("./controllers/lyrics")
 const VersionController = require("./controllers/version")
+const NextController = require("./controllers/next")
 const {getMusicFile}= require("./musicDownloader")
 
 const routes = Router()
@@ -25,6 +26,6 @@ routes.get("/iframe",IframeController.index)
 routes.get("/music",MusicController.index)
 routes.get("/lyrics",LyricsController.index)
 routes.get("/version",VersionController.index)
-routes.get("/lyrics",LyricsController.index)
+routes.get("/next",NextController.index)
 
 module.exports = routes

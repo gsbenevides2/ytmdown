@@ -4,7 +4,8 @@ const caramelPuppy = require("caramel-puppy")({
 })
 function searchInDeezer(searchTerm){
  return new Promise((resolve,reject)=>{
-	const results = []
+	const albums = []
+	let next
 	apis.deezer.get({
 	 url:"/search",
 	 qs:{
@@ -13,8 +14,11 @@ function searchInDeezer(searchTerm){
 	},(error,response,body)=>{
 	 caramelPuppy.request(response,error)
 	 if(!error){
+		if(body.next){
+		 next = `/next${(new URL(body.next)).search}`
+		}
 		body.data.map(result=>{
-		 results.push({
+		 albums.push({
 			id:result.id,
 			title:result.title,
 			artist:result.artist.name,
@@ -23,10 +27,10 @@ function searchInDeezer(searchTerm){
 		 })
 		})
 	 }
-	 resolve(results)
+	 resolve({albums,next})
 	})
  })
-}
+	 }
 function getMusicInDeezer(id){
  return new Promise(resolve=>{
 	apis.deezer.get({

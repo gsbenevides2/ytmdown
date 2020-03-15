@@ -28,8 +28,8 @@
 		"start": "node backend/index.js",
 		"web": "firebase serve"
 	},
-	"version": "3.0.0",
-	"webVersion": "3.0.2",
+	"version": "4.0.0",
+	"webVersion": "4.0.0",
 	"minify-cli": {
 		"src": "web/src",
 		"dest": "web/public",

@@ -28,7 +28,8 @@ module.exports ={
 		response.json({
 		 idOfVideo:id,
 		 searchTerm,
-		 albumResults:results
+		 next:results.next,
+		 albumResults:results.albums
 		})
 	 }
 	}

@@ -11,7 +11,10 @@ const fab = new Vue({
 		this.visible = false
 		api(`/album?url=${urlScreen.url}`)
 		 .then(async res=>{
+			console.log(res.data)
 			this.video= await res.data
+
+			albumsScreen.next = this.video.next
 			albumsScreen.albums = this.video.albumResults
 			urlScreen.visible = false
 			topAppBar.navigationIcon = "arrow_back"

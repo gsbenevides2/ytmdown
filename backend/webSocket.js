@@ -51,6 +51,19 @@ module.exports = socket=>{
 			type:"Success",
 			id
 		 })
+		 if(data.messagingToken){
+			admin.messaging().send({
+			 webpush:{
+				notification:{
+				title:'Donwload Concluido',
+				 icon:'/icons/icon-128x128.png',
+				 click_action:`/down?id=${id}`
+				}
+			 },
+			 token:data.messagingToken
+			})
+			caramelPuppy.log('Sending Message')
+		 }
 		})
 	 })
 	})
