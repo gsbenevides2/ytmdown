@@ -19,10 +19,7 @@ interface SocketData {
   message:string;
 }
 
-const backendUrl =
-  process.env.NODE_ENV === 'development'
-    ? (process.env.REACT_APP_BACKEND_URL || 'https://staging-ytmdown.herokuapp.com')
-    : 'https://ytmdown.herokuapp.com'
+const backendUrl = process.env.REACT_APP_BACKEND_URL as string
 
 const Download:React.FC = () => {
   const { data } = useContext()
@@ -111,7 +108,7 @@ const Download:React.FC = () => {
       { status.type === 'Success' &&
       <Button
         tag='a'
-        href={`${process.env.REACT_APP_BACKEND_URL}/download/${status.message}.mp3`}
+        href={`${backendUrl}/download/${status.message}.mp3`}
         label='Baixar Música' download/>
       }
       { status.type === 'Error' &&
