@@ -2,7 +2,7 @@ name: Deploy backend to staging in heroku
 on:
   push:
     branches:
-      - master
+      - staging
 jobs:
   build:
     runs-on: ubuntu-latest
