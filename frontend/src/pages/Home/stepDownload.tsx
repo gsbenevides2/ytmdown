@@ -61,6 +61,11 @@ const Download:React.FC = () => {
     })
     socket.emit('downloadMusic', dataToDownload)
   }
+  function makeDownloadUrl () {
+    const url = new URL(backendUrl)
+    url.pathname = `download/${status.message}.mp3`
+    return url.href
+  }
   React.useEffect(load, [])
 
   let lottieData:LottieProps
@@ -108,7 +113,7 @@ const Download:React.FC = () => {
       { status.type === 'Success' &&
       <Button
         tag='a'
-        href={`${backendUrl}/download/${status.message}.mp3`}
+        href={makeDownloadUrl()}
         label='Baixar Música' download/>
       }
       { status.type === 'Error' &&
