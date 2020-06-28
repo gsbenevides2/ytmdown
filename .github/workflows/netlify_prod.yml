@@ -1,0 +1,37 @@
+name: Deploy frontend to production in netlify
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+    - name: 'Cache NPM dependencies'
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-npm-cache-
+    - name: 'Installing dependencies'
+      run: cd frontend && npm install
+    - name: 'Building the build'
+      run: cd frontend && npm run build
+      env:   
+        SKIP_PREFLIGHT_CHECK: true
+        REACT_APP_BACKEND_URL: https://ytmdown.herokuapp.com/
+        REACT_APP_FIREBASE: ${{secrets.FIREBASE_WEB}}
+        REACT_APP_SENTRY: ${{secrets.SENTRY_WEB}}
+    - name: 'Deploy to netfily'
+      uses: jsmrcaga/action-netlify-deploy@v1.1.0
+      with:
+        NETLIFY_SITE_ID: ${{secrets.NETLIFY_API_ID}}
+        NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_TOKEN}}
+        NETLIFY_DEPLOY_TO_PROD: true
+        build_directory: frontend/build
