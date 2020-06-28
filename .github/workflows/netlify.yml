@@ -29,7 +29,7 @@ jobs:
         REACT_APP_FIREBASE: ${{secrets.FIREBASE_WEB}}
         REACT_APP_SENTRY: ${{secrets.SENTRY_WEB}}
     - name: 'Deploy to netfily'
-      uses: jsmrcaga/action-netlify-deploy@v1
+      uses: jsmrcaga/action-netlify-deploy@v1.1.0
       with:
         NETLIFY_SITE_ID: ${{secrets.NETLIFY_API_ID}}
         NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_TOKEN}}
