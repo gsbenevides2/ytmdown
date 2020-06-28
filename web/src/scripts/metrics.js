@@ -1,2 +1,0 @@
-firebase.performance()
-firebase.analytics()
