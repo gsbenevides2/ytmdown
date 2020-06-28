@@ -1,0 +1,37 @@
+name: Deploy frontend to staging in netlify
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+    - name: 'Cache NPM dependencies'
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-npm-cache-
+    - name: 'Installing dependencies'
+      run: cd frontend && npm install
+    - name: 'Building the build'
+      run: cd backend && npm run build
+      env:   
+        SKIP_PREFLIGHT_CHECK: true
+        REACT_APP_BACKEND_URL: https://staging-ytmdown.herokuapp.com/
+        REACT_APP_FIREBASE_APIKEY: AIzaSyC4ngJLgSnWp347vkfw_AQMdsAdnX7YgMs
+        REACT_APP_FIREBASE_AUTHDOMAIN: gui-benevides.firebaseapp.com
+        REACT_APP_FIREBASE_DATABASEURL: https://gui-benevides.firebaseio.com
+        REACT_APP_FIREBASE_PROJECTID: gui-benevides
+        REACT_APP_FIREBASE_STORAGEBUCKET: gui-benevides.appspot.com
+        REACT_APP_FIREBASE_MESSAGINGSENDERID: 275309435614
+        REACT_APP_FIREBASE_APPID: 1:275309435614:web:5a7760af490d4baf6a804f
+        REACT_APP_FIREBASE_MEASUREMENTID: G-43KD77XJKZ
+        REACT_APP_SENTRY: https://a6c7a3d1d89b44b3aa5fe923abbfee6f@o303419.ingest.sentry.io/5295871 
