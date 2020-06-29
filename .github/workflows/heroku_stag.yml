@@ -1,0 +1,32 @@
+name: Deploy backend to staging in heroku
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+    - name: 'Cache NPM dependencies'
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-npm-cache-
+    - name: 'Installing dependencies'
+      run: cd backend && npm install
+    - name: 'Building the build'
+      run: cd backend && npm run build
+    - name: 'Deploy to heroku'
+      uses: akhileshns/heroku-deploy@v3.0.5      
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "staging-ytmdown" 
+        heroku_email: ${{secrets.HEROKU_EMAIL}}
+        appdir: "backend"
