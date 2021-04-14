@@ -5,29 +5,29 @@ import nodeId3, { Tags } from 'node-id3'
 import Sentry from '../sentry'
 
 interface TagsInterface extends Tags {
-  APIC:string;
+	APIC: string;
 }
 interface MusicData {
-  album:string;
-  artist:string;
-  title:string;
-  cover:string;
-  number:number;
-  year:number
-  url:string;
-  lyrics:string | null;
-  translation:string | null;
+	album: string;
+	artist: string;
+	title: string;
+	cover: string;
+	number: number;
+	year: number
+	url: string;
+	lyrics: string | null;
+	translation: string | null;
 }
 type LogType = {
-  type:'Log' | 'Error' | 'Success';
-  message:string;
+	type: 'Log' | 'Error' | 'Success';
+	message: string;
 }
-type CallbackType = (log:LogType)=>void;
+type CallbackType = (log: LogType) => void;
 
-function downloadCompleteMusic (data:MusicData, id:string, callback:CallbackType):void {
+function downloadCompleteMusic (data: MusicData, id: string, callback: CallbackType): void {
   let musicFilePath = ''
   let coverFilePath = ''
-  let musicYoutubeData : videoFormat
+  let musicYoutubeData: videoFormat
 
   function getMusicInfo () {
     callback({
@@ -35,16 +35,19 @@ function downloadCompleteMusic (data:MusicData, id:string, callback:CallbackType
       message: 'Obtendo url de download...'
     })
     return new Promise((resolve, reject) => {
-      ytdl.getInfo(data.url, (err, info) => {
-        if (err) {
-          Sentry.captureEvent(err)
-          console.log(err)
-          reject(
-            new Error('Erro ao obter informações')
-          )
-        } else {
+      ytdl.getInfo(data.url).catch(err => {
+        Sentry.captureEvent(err)
+        console.log(err)
+        reject(
+          new Error('Erro ao obter informações')
+        )
+      }).then(info => {
+        if (info) {
           musicYoutubeData = info.formats.filter(ele => ele?.mimeType?.includes('audio/mp4'))[0]
           resolve()
+        } else {
+          reject(
+            new Error('Erro ao obter informações'))
         }
       })
     })
@@ -128,7 +131,7 @@ function downloadCompleteMusic (data:MusicData, id:string, callback:CallbackType
       message: 'Adicionando tags...'
     })
     return new Promise((resolve, reject) => {
-      const tags :TagsInterface = {
+      const tags: TagsInterface = {
         title: data.title,
         artist: data.artist,
         album: data.album,
@@ -143,7 +146,7 @@ function downloadCompleteMusic (data:MusicData, id:string, callback:CallbackType
         }
       }
       const success = nodeId3.write(tags, musicFilePath)
-      if (success)resolve()
+      if (success) resolve()
       else {
         reject(
           new Error('Ocoreu um erro desconhecido ao inserir as tags')
