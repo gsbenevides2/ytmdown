@@ -136,7 +136,7 @@ function downloadCompleteMusic (data: MusicData, id: string, callback: CallbackT
         artist: data.artist,
         album: data.album,
         APIC: coverFilePath,
-        year: data.year,
+        year: String(data.year),
         trackNumber: String(data.number)
       }
       if (data.lyrics || data.translation) {
