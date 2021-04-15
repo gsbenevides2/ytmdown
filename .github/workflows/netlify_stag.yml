@@ -11,8 +11,9 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '12.x'
+    - name: Get yarn cache directory path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
     - name: 'Cache Yarn dependencies'
-      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
